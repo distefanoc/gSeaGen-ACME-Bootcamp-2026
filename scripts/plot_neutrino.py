@@ -110,7 +110,7 @@ cCt.SaveAs("plots/" + name + "_nu_costheta.png")
 
 
 print("Generation parameters:")
-print(f"  Number of generated neutrinos: {ntot:.0f}")
+print(f"  Mean number of neutrinos to simulate: {ntot:.0f}")
 print(f"  Energy range: {emin:.2e} - {emax:.2e} GeV")
 print(f"  Cosine of zenith range: {ctmin} - {ctmax}")
 print(f"  Number of energy bins: {gp.NBin}")
