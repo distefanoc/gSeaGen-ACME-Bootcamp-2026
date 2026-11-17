@@ -111,7 +111,21 @@ If the checksums do not match, the file may be corrupted or incomplete and shoul
 
 ## 3. Test gSeaGen
 
-*To be completed.*
+Make sure you are in your working directory and that the configuration has been loaded:
+
+```bash
+source setup.sh
+```
+
+To check that gSeaGen runs correctly, execute:
+
+```bash
+apptainer exec "$CONTAINER" gSeaNuEvGen --help
+```
+
+You should see the gSeaGen banner followed by the list of available command-line options.
+
+If the command runs successfully, your gSeaGen container is ready to use.
 
 ## 4. Test ROOT and PyROOT
 
