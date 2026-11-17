@@ -27,7 +27,8 @@ Instructions, simulation scripts and analysis examples will be provided in this 
 
 ## Useful links
 
-- [gSeaGen source code](https://git.km3net.de/opensource/gseagen)
+- [gSeaGen source code (GitLab)](https://git.km3net.de/opensource/gseagen)
+- [gSeaGen v7.7.1 (Zenodo)](https://doi.org/10.5281/zenodo.24232207)
 - [GENIE Neutrino Monte Carlo Generator](https://genie-mc.org/)
 - [Apptainer](https://apptainer.org/)
 - [ROOT](https://root.cern/)
