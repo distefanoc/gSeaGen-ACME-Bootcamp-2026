@@ -224,7 +224,7 @@ A graphical window displaying a Gaussian distribution should appear.
 Save the plot as a PNG file:
 
 ```python
-c.SaveAs("test_pyroot.png")
+c.SaveAs("plots/test_pyroot.png")
 ```
 
 Exit Python:
@@ -236,7 +236,7 @@ exit()
 Check that the output file has been created in your working directory:
 
 ```bash
-ls -lh test_pyroot.png
+ls -lh plots/test_pyroot.png
 ```
 
 If both tests are successful, ROOT and PyROOT are ready to use.
