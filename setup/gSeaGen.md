@@ -25,11 +25,67 @@ cd /Users/<your-mac-username>/gseagen
 
 ## 2. Download the gSeaGen container
 
-Download the file `gseagen_open_v7.7.1.sif` from:
+The container file `gseagen_open_v7.7.1.sif` is available on [Zenodo – gSeaGen v7.7.1](https://doi.org/10.5281/zenodo.24232207).
 
-[gSeaGen v7.7.1 – Zenodo](https://doi.org/10.5281/zenodo.24232207)
+The container is approximately **4.1 GB** in size, so the download may take some time depending on your internet connection.
 
-Save the container in your working directory.
+Make sure you are in your working directory before proceeding.
+
+You can download the container using one of the following methods.
+
+### Option A – Using curl (recommended)
+
+```bash
+curl -L --fail -o gseagen_open_v7.7.1.sif \
+    "https://zenodo.org/records/24232207/files/gseagen_open_v7.7.1.sif?download=1"
+```
+
+### Option B – Using wget
+
+```bash
+wget -O gseagen_open_v7.7.1.sif \
+    "https://zenodo.org/records/24232207/files/gseagen_open_v7.7.1.sif?download=1"
+```
+
+### Option C – Using a web browser
+
+If neither `curl` nor `wget` is available on your system, simply open the [Zenodo page](https://doi.org/10.5281/zenodo.24232207) in your web browser and download the file `gseagen_open_v7.7.1.sif`.
+
+Move the downloaded file to your working directory.
+
+### Check the downloaded file
+
+Once the download is complete, check that the file is present:
+
+```bash
+ls -lh gseagen_open_v7.7.1.sif
+```
+
+### Verify the file integrity (optional)
+
+You can verify the integrity of the downloaded file by computing its MD5 checksum.
+
+On Linux, including Lima and WSL2:
+
+```bash
+md5sum gseagen_open_v7.7.1.sif
+```
+
+If you are working directly from a macOS terminal:
+
+```bash
+md5 gseagen_open_v7.7.1.sif
+```
+
+The expected MD5 checksum is:
+
+```text
+78a42495dbc5b42eb1aa83cb04bc7a84
+```
+
+If the checksum does not match, the file may be corrupted or incomplete and should be downloaded again.
+
+**You only need to download the container once.**
 
 ## 3. Test gSeaGen
 
