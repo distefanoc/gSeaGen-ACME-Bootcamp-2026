@@ -243,7 +243,35 @@ If both tests are successful, ROOT and PyROOT are ready to use.
 
 ## 5. Run a test simulation
 
-*To be completed.*
+We will now run a short simulation to verify that gSeaGen and all its dependencies work correctly.
+
+The simulation generates muon neutrinos with energies between 100 GeV and 1 PeV, using charged-current interactions.
+
+From your working directory, run:
+
+```bash
+bash scripts/run_test.sh
+```
+
+The script generates 1000 neutrinos and saves the simulation output in the `files/` directory.
+
+Once the simulation is complete, check the output files:
+
+```bash
+ls -lh files/test*
+```
+
+You should find the following files:
+
+```text
+files/test.1.binstat
+files/test.1.et.root
+files/test.1.geo-mu.root
+```
+
+The main simulation output is `files/test.1.et.root`, which contains the simulated events and the generation parameters.
+
+We will use this file to test the analysis in the next section.
 
 ## 6. Check the simulation output
 
