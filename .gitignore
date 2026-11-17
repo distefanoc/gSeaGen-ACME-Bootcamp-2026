@@ -221,3 +221,19 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+# Apptainer containers
+*.sif
+
+# Simulation output
+files/
+
+# Analysis output
+plots/
+
+# ROOT files
+*.root
+
+# macOS
+.DS_Store
