@@ -348,6 +348,3 @@ The value of `NEvBinGen` should match both `Number of saved events` and `Total M
 
 [Back to the main page](../README.md)
 
----
-
-[Back to the main page](../README.md)
