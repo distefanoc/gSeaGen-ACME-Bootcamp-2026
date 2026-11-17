@@ -2,15 +2,21 @@
 
 These instructions apply to all operating systems once Apptainer has been successfully installed.
 
-We will use **gSeaGen v7.7.1**, distributed as an Apptainer container that includes GENIE, ROOT, PyROOT and all the required dependencies.
+We will use gSeaGen distributed as an Apptainer container that includes GENIE, ROOT, PyROOT and all the required dependencies.
+
+The gSeaGen version used during the hands-on sessions is specified in the `setup.sh` configuration file provided in this repository.
 
 ## 1. Working directory
+
+### 1.1 Open a terminal
 
 - **Linux:** Open a terminal.
 - **macOS:** Connect to your Lima virtual machine using SSH with X11 forwarding, as described in the [macOS setup instructions](macOS.md).
 - **Windows:** Open the Ubuntu terminal.
 
-On Linux and Windows, create and enter your working directory:
+### 1.2 Create your working directory
+
+On Linux and Windows:
 
 ```bash
 mkdir -p ~/gseagen
@@ -22,6 +28,42 @@ On macOS, access the shared working directory created during the setup:
 ```bash
 cd /Users/<your-mac-username>/gseagen
 ```
+
+### 1.3 Download the hands-on material
+
+Download this GitHub repository using the **Code → Download ZIP** option on the [main repository page](../README.md).
+
+Extract the archive and copy its contents into your working directory.
+
+### 1.4 Create the output directories
+
+From your working directory, run:
+
+```bash
+mkdir -p files plots
+```
+
+The working directory will have the following structure:
+
+```text
+gseagen/
+├── README.md
+├── setup.sh
+├── setup/
+├── scripts/
+├── files/
+└── plots/
+```
+
+- `setup.sh`: gSeaGen release configuration.
+- `setup/`: installation and setup instructions.
+- `scripts/`: simulation and analysis scripts.
+- `files/`: simulation output files.
+- `plots/`: plots produced during the analysis.
+
+The gSeaGen container will also be stored in the main working directory.
+
+**Always execute the simulation and analysis commands from the main working directory, not from the scripts directory.**
 
 ## 2. Download the gSeaGen container
 
