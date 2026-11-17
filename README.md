@@ -13,13 +13,19 @@ Students will learn how to generate neutrino events and analyse the simulation o
 
 ## Software setup
 
-We will use gSeaGen v7.7.1, distributed as an Apptainer container that includes all the required software and dependencies.
+We will use gSeaGen distributed as an Apptainer container that includes all the required software and dependencies.
+
+The gSeaGen version used during the hands-on sessions is specified in the [setup.sh](setup.sh) configuration file.
 
 Please complete the software setup **before the school** by following the instructions for your operating system:
 
 - [Linux](setup/Linux.md)
 - [macOS](setup/macOS.md)
 - [Windows](setup/Windows.md)
+
+Once Apptainer has been successfully installed, follow these instructions:
+
+- [Downloading and testing gSeaGen](setup/gSeaGen.md)
 
 ## Hands-on exercises
 
@@ -28,7 +34,6 @@ Instructions, simulation scripts and analysis examples will be provided in this 
 ## Useful links
 
 - [gSeaGen source code (GitLab)](https://git.km3net.de/opensource/gseagen)
-- [gSeaGen v7.7.1 (Zenodo)](https://doi.org/10.5281/zenodo.24232207)
 - [GENIE Neutrino Monte Carlo Generator](https://genie-mc.org/)
 - [Apptainer](https://apptainer.org/)
 - [ROOT](https://root.cern/)
