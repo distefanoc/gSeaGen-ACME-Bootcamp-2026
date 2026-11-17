@@ -129,7 +129,75 @@ If the command runs successfully, your gSeaGen container is ready to use.
 
 ## 4. Test ROOT and PyROOT
 
-*To be completed.*
+The gSeaGen container includes ROOT and PyROOT, which will be used to analyse the simulation output during the hands-on sessions.
+
+### 4.1 Test ROOT
+
+Start ROOT inside the container:
+
+```bash
+apptainer exec "$CONTAINER" root -l
+```
+
+At the ROOT prompt, enter:
+
+```cpp
+auto c = new TCanvas("c", "ROOT test", 800, 600);
+auto h = new TH1D("h", "ROOT test", 100, -4, 4);
+h->FillRandom("gaus", 10000);
+h->Draw();
+```
+
+A graphical window displaying a Gaussian distribution should appear.
+
+To exit ROOT, type:
+
+```cpp
+.q
+```
+
+### 4.2 Test PyROOT
+
+Start Python inside the container:
+
+```bash
+apptainer exec "$CONTAINER" python3
+```
+
+At the Python prompt, enter:
+
+```python
+import ROOT
+print(ROOT.gROOT.GetVersion())
+
+c = ROOT.TCanvas("c", "PyROOT test", 800, 600)
+h = ROOT.TH1D("h", "PyROOT test", 100, -4, 4)
+h.FillRandom("gaus", 10000)
+h.Draw()
+c.Update()
+```
+
+A graphical window displaying a Gaussian distribution should appear.
+
+Save the plot as a PNG file:
+
+```python
+c.SaveAs("test_pyroot.png")
+```
+
+Exit Python:
+
+```python
+exit()
+```
+
+Check that the output file has been created in your working directory:
+
+```bash
+ls -lh test_pyroot.png
+```
+
+If both tests are successful, ROOT and PyROOT are ready to use.
 
 ## 5. Run a test simulation
 
