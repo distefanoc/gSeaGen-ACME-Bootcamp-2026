@@ -25,65 +25,87 @@ cd /Users/<your-mac-username>/gseagen
 
 ## 2. Download the gSeaGen container
 
-The container file `gseagen_open_v7.7.1.sif` is available on [Zenodo – gSeaGen v7.7.1](https://doi.org/10.5281/zenodo.24232207).
+The gSeaGen container is available on [Zenodo](https://zenodo.org/).
 
-The container is approximately **4.1 GB** in size, so the download may take some time depending on your internet connection.
+The version used during the hands-on sessions is specified in the `setup.sh` configuration file provided in this repository.
 
-Make sure you are in your working directory before proceeding.
+The container is several gigabytes in size, so the download may take some time depending on your internet connection.
+
+### 2.1 Load the configuration
+
+Make sure you are in your working directory and that the `setup.sh` file is available.
+
+Load the configuration:
+
+```bash
+source setup.sh
+```
+
+Check the selected gSeaGen version:
+
+```bash
+echo $GSEAGEN_VERSION
+```
+
+### 2.2 Download the container
 
 You can download the container using one of the following methods.
 
-### Option A – Using curl (recommended)
+#### Option A – Using curl (recommended)
 
 ```bash
-curl -L --fail -o gseagen_open_v7.7.1.sif \
-    "https://zenodo.org/records/24232207/files/gseagen_open_v7.7.1.sif?download=1"
+curl -L --fail -o "$CONTAINER" "$CONTAINER_URL"
 ```
 
-### Option B – Using wget
+#### Option B – Using wget
 
 ```bash
-wget -O gseagen_open_v7.7.1.sif \
-    "https://zenodo.org/records/24232207/files/gseagen_open_v7.7.1.sif?download=1"
+wget -O "$CONTAINER" "$CONTAINER_URL"
 ```
 
-### Option C – Using a web browser
+#### Option C – Using a web browser
 
-If neither `curl` nor `wget` is available on your system, simply open the [Zenodo page](https://doi.org/10.5281/zenodo.24232207) in your web browser and download the file `gseagen_open_v7.7.1.sif`.
+If neither `curl` nor `wget` is available on your system, simply download the container using your web browser.
 
-Move the downloaded file to your working directory.
+To obtain the Zenodo page URL, run:
 
-### Check the downloaded file
+```bash
+echo $ZENODO_URL
+```
+
+Open the displayed URL in your web browser, download the container file and move it to your working directory.
+
+### 2.3 Check the downloaded file
 
 Once the download is complete, check that the file is present:
 
 ```bash
-ls -lh gseagen_open_v7.7.1.sif
+ls -lh "$CONTAINER"
 ```
 
-### Verify the file integrity (optional)
+### 2.4 Verify the file integrity (optional)
 
 You can verify the integrity of the downloaded file by computing its MD5 checksum.
 
 On Linux, including Lima and WSL2:
 
 ```bash
-md5sum gseagen_open_v7.7.1.sif
+md5sum "$CONTAINER"
 ```
 
 If you are working directly from a macOS terminal:
 
 ```bash
-md5 gseagen_open_v7.7.1.sif
+md5 "$CONTAINER"
 ```
 
-The expected MD5 checksum is:
+Compare the result with the expected MD5 checksum:
 
-```text
-78a42495dbc5b42eb1aa83cb04bc7a84
+```bash
+echo $CONTAINER_MD5
 ```
 
-If the checksum does not match, the file may be corrupted or incomplete and should be downloaded again.
+If the checksums do not match, the file may be corrupted or incomplete and should be downloaded again.
 
 **You only need to download the container once.**
 
