@@ -42,6 +42,7 @@ Create a Linux virtual machine with Apptainer already installed:
 ```bash
 limactl start --name=apptainer --mount-writable template:apptainer
 ```
+The --mount-writable option allows the virtual machine to read and write files in the shared macOS home directory.
 
 If prompted, proceed with the default configuration.
 
