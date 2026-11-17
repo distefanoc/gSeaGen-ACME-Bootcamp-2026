@@ -40,7 +40,7 @@ Follow **only one** of the two procedures below, depending on your processor.
 Create a Linux virtual machine with Apptainer already installed:
 
 ```bash
-limactl start --name=apptainer template:apptainer
+limactl start --name=apptainer --mount-writable template:apptainer
 ```
 
 If prompted, proceed with the default configuration.
