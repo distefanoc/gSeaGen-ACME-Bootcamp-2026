@@ -275,7 +275,78 @@ We will use this file to test the analysis in the next section.
 
 ## 6. Check the simulation output
 
-*To be completed.*
+We will now analyse the simulation output using PyROOT.
+
+Make sure you are in your working directory and that the configuration has been loaded:
+
+```bash
+source setup.sh
+```
+
+Run the analysis script:
+
+```bash
+apptainer exec "$CONTAINER" python3 -i scripts/plot_neutrino.py files/test.1.et.root
+```
+
+The script reads the simulation output and produces both unweighted and weighted distributions of the neutrino energy and the cosine of the neutrino zenith angle.
+
+Two graphical windows should appear, and the corresponding plots will be saved in the `plots/` directory:
+
+```text
+plots/test.1_nu_energy.png
+plots/test.1_nu_costheta.png
+```
+
+The script also prints the generation parameters and the integrated results. For example:
+
+```text
+Generation parameters:
+  Mean number of neutrinos to simulate: 1000
+  Energy range: 1.00e+02 - 1.00e+06 GeV
+  Cosine of zenith range: -1.0 - 1.0
+  Number of energy bins: 1
+  Number of saved events: 47
+Total MC events: 47
+Total event rate: 2.7024e-06 Hz
+Expected events per year: 85.28
+```
+
+The output shown above is an example. The number of saved events and the estimated event rate may differ from the values reported here.
+
+To exit Python, type:
+
+```python
+exit()
+```
+
+Check that the plots have been created:
+
+```bash
+ls -lh plots/test*
+```
+
+### Verify the generation statistics
+
+You can check the generation statistics by inspecting the `.binstat` file:
+
+```bash
+cat files/test.1.binstat
+```
+
+Check the following columns:
+
+- `NEvBin`: mean number of neutrinos to be simulated in the energy bin, used for event weight normalisation.
+- `NEvBinScal`: actual number of simulated neutrinos, obtained by applying a Poisson fluctuation to `NEvBin` to account for statistical fluctuations.
+- `NEvBinGen`: number of events accepted and saved in the output file.
+
+The value of `NEvBinGen` should match both `Number of saved events` and `Total MC events` printed by the analysis script.
+
+**Congratulations! If all the tests have been completed successfully, your software environment is ready for the hands-on sessions.**
+
+---
+
+[Back to the main page](../README.md)
 
 ---
 
