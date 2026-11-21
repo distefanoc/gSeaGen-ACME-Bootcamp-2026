@@ -3,18 +3,22 @@ import os
 import sys
 import math
 
+# Use graphical mode when a display is available; otherwise run without windows.
 ROOT.gROOT.SetBatch(not bool(os.environ.get("DISPLAY")))
+# Load the gSeaGen event classes so ROOT can read the stored objects.
 ROOT.gSystem.Load(os.environ["GSEAGEN"] + "/lib/libGSeaEvent.so")
 
-# Input file
+# Read the ROOT file name from the command line.
 filename = sys.argv[1]
 name = os.path.basename(filename).replace(".et.root", "")
 
+# The Header tree stores generation settings; Events stores simulated events.
 f = ROOT.TFile.Open(filename)
 header = f.Get("Header")
 tree = f.Get("Events")
 
-# Generation parameters
+# Read the first Header entry to obtain the simulated energy and angle ranges
+# and the number of neutrinos used for normalisation.
 header.GetEntry(0)
 gp = header.Header
 
@@ -24,14 +28,15 @@ emax = gp.EvMax
 ctmin = gp.CtMin
 ctmax = gp.CtMax
 
-# Book energy histograms
+# Use log10(E/GeV) to display the broad neutrino energy range.
+# Create separate histograms for event counts and weighted event rates.
 hE = ROOT.TH1D("hE", "Unweighted events", 40,
               math.log10(emin), math.log10(emax))
 
 hEw = ROOT.TH1D("hEw", "Weighted events", 40,
                math.log10(emin), math.log10(emax))
 
-# Book zenith angle histograms
+# The angular distributions use the cosine of the neutrino zenith angle.
 hCt = ROOT.TH1D("hCt", "Unweighted events", 40,
                ctmin, ctmax)
 
@@ -51,22 +56,25 @@ hCt.GetYaxis().SetTitle("MC events")
 hCtw.GetXaxis().SetTitle("cos#theta_{#nu}")
 hCtw.GetYaxis().SetTitle("Event rate (Hz)")
 
-# Enable calculation of weighted statistical errors
+# Store the sum of squared weights for statistical uncertainties
+# in the weighted histograms.
 hEw.Sumw2()
 hCtw.Sumw2()
 
-# Loop over events
+# Loop over saved events; the first track contains the incoming neutrino.
 for entry in tree:
     event = entry.Events
     nu = event.Tracks[0]
 
+    # Divide the event weight by the number of generated neutrinos:
+    # each weighted entry contributes to the estimated event rate in Hz.
     weight = event.EvtWeight / ntot
 
-    # Unweighted distributions
+    # Each saved event contributes one count to these distributions.
     hE.Fill(math.log10(nu.E))
     hCt.Fill(nu.D3)
 
-    # Weighted distributions
+    # Each event contributes its normalised weight to the rate distributions.
     hEw.Fill(math.log10(nu.E), weight)
     hCtw.Fill(nu.D3, weight)
 
@@ -82,7 +90,7 @@ for h in [hEw, hCtw]:
     h.SetMarkerColor(ROOT.kRed)
     h.SetLineWidth(2)
 
-# Draw energy distributions
+# Draw event counts and estimated event rates side by side.
 cE = ROOT.TCanvas("cE", "Neutrino energy", 1200, 500)
 cE.Divide(2, 1)
 
@@ -95,7 +103,7 @@ hEw.Draw("HIST E")
 cE.Update()
 cE.SaveAs("plots/" + name + "_nu_energy.png")
 
-# Draw zenith angle distributions
+# Draw the corresponding distributions in cos(zenith angle).
 cCt = ROOT.TCanvas("cCt", "Neutrino zenith angle", 1200, 500)
 cCt.Divide(2, 1)
 
@@ -117,7 +125,8 @@ print(f"  Number of energy bins: {gp.NBin}")
 print(f"  Number of saved events: {tree.GetEntries()}")
 
 
-# Print integrated results
+# Integrating the weighted energy histogram gives the total rate in Hz.
+# Multiply by the number of seconds in a year to estimate annual events.
 print(f"Total MC events: {hE.Integral():.0f}")
 print(f"Total event rate: {hEw.Integral():.4e} Hz")
 print(f"Expected events per year: {hEw.Integral()*365.25*86400:.2f}")
