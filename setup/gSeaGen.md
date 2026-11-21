@@ -35,13 +35,9 @@ Download this GitHub repository using the **Code → Download ZIP** option on th
 
 Extract the archive and copy its contents into your working directory.
 
-### 1.4 Create the output directories
+### 1.4 Output directories
 
-From your working directory, run:
-
-```bash
-mkdir -p files plots
-```
+The `files` and `plots` directories are created automatically when you load `setup.sh` in Section 2.1.
 
 The working directory will have the following structure:
 
@@ -107,7 +103,7 @@ wget -O "$CONTAINER" "$CONTAINER_URL"
 
 #### Option C – Using a web browser
 
-If neither `curl` nor `wget` is available on your system, simply download the container using your web browser.
+If `curl` or `wget` is unavailable or the download fails, download the container using your web browser.
 
 To obtain the Zenodo page URL, run:
 
@@ -271,11 +267,11 @@ files/test.1.geo-mu.root
 
 The main simulation output is `files/test.1.et.root`, which contains the simulated events and the generation parameters.
 
-We will use this file to test the analysis in the next section.
+We will use this file to verify that the generated events can be read in the next section.
 
 ## 6. Check the simulation output
 
-We will now analyse the simulation output using PyROOT.
+We will now verify that the test simulation produced events and that the ROOT output file can be opened.
 
 Make sure you are in your working directory and that the configuration has been loaded:
 
@@ -283,64 +279,25 @@ Make sure you are in your working directory and that the configuration has been 
 source setup.sh
 ```
 
-Run the analysis script:
+Open the generated file directly with `gSeaROOT`:
 
 ```bash
-apptainer exec "$CONTAINER" python3 -i scripts/plot_neutrino.py files/test.1.et.root
+apptainer exec "$CONTAINER" gSeaROOT files/test.1.et.root
 ```
 
-The script reads the simulation output and produces both unweighted and weighted distributions of the neutrino energy and the cosine of the neutrino zenith angle.
+At the `gSeaROOT` prompt, check the number of saved events:
 
-Two graphical windows should appear, and the corresponding plots will be saved in the `plots/` directory:
-
-```text
-plots/test.1_nu_energy.png
-plots/test.1_nu_costheta.png
+```cpp
+Events->GetEntries();
 ```
 
-The script also prints the generation parameters and the integrated results. For example:
+The command should return a positive number. For example, our test produced 47 saved events; your result may differ.
 
-```text
-Generation parameters:
-  Mean number of neutrinos to simulate: 1000
-  Energy range: 1.00e+02 - 1.00e+06 GeV
-  Cosine of zenith range: -1.0 - 1.0
-  Number of energy bins: 1
-  Number of saved events: 47
-Total MC events: 47
-Total event rate: 2.7024e-06 Hz
-Expected events per year: 85.28
+Exit `gSeaROOT` with:
+
+```cpp
+.q
 ```
-
-The output shown above is an example. The number of saved events and the estimated event rate may differ from the values reported here.
-
-To exit Python, type:
-
-```python
-exit()
-```
-
-Check that the plots have been created:
-
-```bash
-ls -lh plots/test*
-```
-
-### Verify the generation statistics
-
-You can check the generation statistics by inspecting the `.binstat` file:
-
-```bash
-cat files/test.1.binstat
-```
-
-Check the following columns:
-
-- `NEvBin`: mean number of neutrinos to be simulated in the energy bin, used for event weight normalisation.
-- `NEvBinScal`: actual number of simulated neutrinos, obtained by applying a Poisson fluctuation to `NEvBin` to account for statistical fluctuations.
-- `NEvBinGen`: number of events accepted and saved in the output file.
-
-The value of `NEvBinGen` should match both `Number of saved events` and `Total MC events` printed by the analysis script.
 
 **Congratulations! If all the tests have been completed successfully, your software environment is ready for the hands-on sessions.**
 
