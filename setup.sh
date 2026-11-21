@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # gSeaGen release configuration
-export GSEAGEN_VERSION="v7.7.1"
-export ZENODO_RECORD="24232207"
+export GSEAGEN_VERSION="v7.7.2"
+export ZENODO_RECORD="24429854"
 
 # Container information
 export CONTAINER="gseagen_open_${GSEAGEN_VERSION}.sif"
-export CONTAINER_MD5="78a42495dbc5b42eb1aa83cb04bc7a84"
+export CONTAINER_MD5="f2b28339cf07883c9feeba594640b81b"
 
 # Download URLs
 export ZENODO_URL="https://zenodo.org/records/${ZENODO_RECORD}"
