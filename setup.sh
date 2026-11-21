@@ -11,3 +11,6 @@ export CONTAINER_MD5="f2b28339cf07883c9feeba594640b81b"
 # Download URLs
 export ZENODO_URL="https://zenodo.org/records/${ZENODO_RECORD}"
 export CONTAINER_URL="${ZENODO_URL}/files/${CONTAINER}?download=1"
+
+# Create output directories in the working directory
+mkdir -p files plots
