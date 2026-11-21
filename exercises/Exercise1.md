@@ -66,9 +66,16 @@ Try to identify:
 - The difference between weighted and unweighted distributions.
 - How the total event rate and the expected number of events per year are calculated.
 
-We will use this script to analyse the simulation results.
+In the second terminal, from the working directory, load the configuration and run the analysis on the **one-bin** simulation output while the five-bin simulation is still running:
 
-When the simulation finishes, check the output files and generation statistics:
+```bash
+source setup.sh
+apptainer exec "$CONTAINER" python3 -i scripts/plot_neutrino.py files/numuCC_1bin.1.et.root
+```
+
+Inspect the energy and zenith-angle distributions, both weighted and unweighted, and the event rates printed by the script. Exit Python with `exit()` when you are finished.
+
+When the five-bin simulation finishes, check its output files and generation statistics:
 
 ```bash
 ls -lh files/numuCC_5bin*
@@ -82,13 +89,7 @@ cat files/numuCC_5bin.1.binstat
 
 ## 1.3 Analyse and compare the results
 
-Run the analysis script on each simulation output:
-
-```bash
-apptainer exec "$CONTAINER" python3 -i scripts/plot_neutrino.py files/numuCC_1bin.1.et.root
-```
-
-After inspecting the plots and printed results, exit Python with `exit()`, then analyse the five-bin sample:
+You have already analysed the one-bin sample. Now run the same script on the five-bin output:
 
 ```bash
 apptainer exec "$CONTAINER" python3 -i scripts/plot_neutrino.py files/numuCC_5bin.1.et.root
