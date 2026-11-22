@@ -1,6 +1,16 @@
 # Exercise 1 – Simulation of a diffuse neutrino flux
 
+## Learning objectives
+
 In this exercise, we will simulate charged-current interactions of muon neutrinos from an isotropic flux with an $E^{-2}$ energy spectrum, using a detector geometry inspired by KM3NeT/ARCA.
+
+By the end of this exercise, you will be able to:
+
+- Generate neutrino interactions with gSeaGen using different energy binning configurations.
+- Explore the simulation output using ROOT and Python.
+- Understand the difference between generated event distributions and physically weighted distributions.
+- Investigate how energy binning affects event generation and the resulting event weights.
+- Compare the expected event rates obtained with different generation configurations.
 
 ## 1.1 Run the simulation with one energy bin
 
