@@ -32,6 +32,7 @@ Once Apptainer has been successfully installed, follow these instructions:
 Instructions, simulation scripts and analysis examples will be provided in this repository.
 
 - [Atmospheric neutrinos: REAL vs WEIGHTED generation](exercises/atmospheric-neutrinos.md)
+- [Exercise 3: Atmospheric and astrophysical neutrino flux reweighting](exercises/atmospheric-astrophysical-reweighting.md)
 
 ## Useful links
 
