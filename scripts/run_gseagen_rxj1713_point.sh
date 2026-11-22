@@ -16,7 +16,7 @@ OPTIONS=(
     --coord "RAD:0.632973,0.280998"  # Detector latitude and longitude (rad)
     --rt "proj"                      # Projected generation area
     --wgt 2                          # Weighted event generation
-    --time "1609459200,1640991599"   # Generation time interval (Unix time)
+    --time "1609459200,1640991599"   # Generation period: year 2021 (Unix timestamps)
     --point "FILE:data/rxj1713_point.xml"  # Astrophysical point source
 )
 
