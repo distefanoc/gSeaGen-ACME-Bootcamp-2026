@@ -16,8 +16,8 @@ OPTIONS=(
     --coord "RAD:0.632973,0.280998"  # Detector latitude and longitude (rad)
     --rt "proj"                      # Projected generation area
     --wgt 2                          # Weighted event generation
-    --time "1609459200,1640991599"   # Generation time interval (Unix time)
-    --point "FILE:data/rxj1713_extended.xml"  # Astrophysical point source
+    --time "1609459200,1640991599"   # Generation period: year 2021 (Unix timestamps)
+    --point "FILE:data/rxj1713_extended.xml"  # Extended astrophysical source
 )
 
 apptainer exec "$CONTAINER" gSeaNuEvGen "${OPTIONS[@]}"
