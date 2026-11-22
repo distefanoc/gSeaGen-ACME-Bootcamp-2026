@@ -113,16 +113,23 @@ canvas.Update()
 canvas.SaveAs("plots/compare_neutrino.png")
 
 rate1, rate5 = one["rate"], five["rate"]
-print("\nComparison of weighted event rates")
-for sample in (one, five):
-    print("\n" + sample["label"] + ":")
-    print(f"  Saved events:         {sample['saved']}")
-    print(f"  Event rate:           {sample['rate']:.4e} Hz")
-    print(f"  Expected events/year: {sample['rate'] * seconds_per_year:.2f}")
+saved1, saved5 = one["saved"], five["saved"]
 
+print("\nComparison of 1-bin and 5-bin simulations")
+print("\nUNWEIGHTED (MC statistics: saved event counts)")
+print(f"  1 energy bin:                  {saved1} events")
+print(f"  5 energy bins:                 {saved5} events")
+if saved1 != 0:
+    print(f"  Saved events ratio (5 / 1):    {saved5 / saved1:.2f}")
+else:
+    print("  Saved events ratio (5 / 1):    undefined (zero events)")
+
+print("\nWEIGHTED (Physical event rates)")
+print(f"  1 energy bin:                  {rate1:.4e} Hz  ({rate1 * seconds_per_year:.2f} events/year)")
+print(f"  5 energy bins:                 {rate5:.4e} Hz  ({rate5 * seconds_per_year:.2f} events/year)")
 if rate1 != 0:
     ratio = rate5 / rate1
-    print(f"\nRate ratio (5 bins / 1 bin): {ratio:.4f}")
-    print(f"Relative difference:         {(ratio - 1) * 100:+.2f}%")
+    print(f"  Event rate ratio (5 / 1):      {ratio:.4f}")
+    print(f"  Relative rate difference:     {(ratio - 1) * 100:+.2f}%")
 else:
-    print("\nRate ratio: undefined (1-bin rate is zero)")
+    print("  Event rate ratio (5 / 1):      undefined (zero rate)")
