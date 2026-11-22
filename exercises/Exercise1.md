@@ -104,3 +104,19 @@ Compare the unweighted and weighted neutrino energy and zenith-angle distributio
 - How do the weighted and unweighted distributions differ?
 - What changes when using five energy bins instead of one?
 - Are the estimated event rates compatible, taking statistical fluctuations into account?
+
+### Compare the weighted distributions directly
+
+Run [compare_neutrino.py](../scripts/compare_neutrino.py) to overlay the weighted energy and zenith-angle distributions from the one-bin and five-bin simulations:
+
+```bash
+apptainer exec "$CONTAINER" python3 -i scripts/compare_neutrino.py files/numuCC_1bin.1.et.root files/numuCC_5bin.1.et.root
+```
+
+Inspect the two panels in `plots/compare_neutrino.png`. The blue points correspond to one energy bin and the red points to five energy bins; the error bars show statistical uncertainties. The terminal also prints the saved event counts, the estimated event rates and their ratio (5 bins / 1 bin).
+
+**Questions:**
+
+- Are the two weighted distributions consistent within statistical fluctuations?
+- What is the ratio of the estimated event rates?
+- Why does the five-bin simulation produce more saved events while giving a consistent physical event rate?
