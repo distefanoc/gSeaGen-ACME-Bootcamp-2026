@@ -30,19 +30,21 @@ ctmax = gp.CtMax
 
 # Use log10(E/GeV) to display the broad neutrino energy range.
 # Create separate histograms for event counts and weighted event rates.
-hE = ROOT.TH1D("hE", "Unweighted events", 40,
-              math.log10(emin), math.log10(emax))
+nbin = 25
 
-hEw = ROOT.TH1D("hEw", "Weighted events", 40,
+hE = ROOT.TH1D("hE", "Unweighted events", nbin,
                math.log10(emin), math.log10(emax))
 
-# The angular distributions use the cosine of the neutrino zenith angle.
-hCt = ROOT.TH1D("hCt", "Unweighted events", 40,
-               ctmin, ctmax)
+hEw = ROOT.TH1D("hEw", "Weighted events", nbin,
+                math.log10(emin), math.log10(emax))
 
-hCtw = ROOT.TH1D("hCtw", "Weighted events", 40,
+# The angular distributions use the cosine of the neutrino zenith angle.
+hCt = ROOT.TH1D("hCt", "Unweighted events", nbin,
                 ctmin, ctmax)
 
+hCtw = ROOT.TH1D("hCtw", "Weighted events", nbin,
+                 ctmin, ctmax)
+	       
 # Axis titles
 hE.GetXaxis().SetTitle("log_{10}(E_{#nu}/GeV)")
 hE.GetYaxis().SetTitle("MC events")

@@ -3,7 +3,7 @@
 source setup.sh
 
 OPTIONS=(
-    -n 1E5                           # Number of neutrinos to generate
+    -n 5E4                           # Number of neutrinos to generate
     -e 1E2,1E6                       # Neutrino energy range (GeV)
     -t -1.,1.                        # Cosine of zenith angle range
     -f "FUNC1:1E-5*pow(x,-2)[14]"    # Physical neutrino flux and neutrino type
