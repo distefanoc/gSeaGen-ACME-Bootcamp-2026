@@ -96,6 +96,10 @@ for h in [hEw, hCtw]:
 cE = ROOT.TCanvas("cE", "Neutrino energy", 1200, 500)
 cE.Divide(2, 1)
 
+# Leave enough room for the Y-axis titles in both pads.
+for i in (1, 2):
+    cE.cd(i).SetLeftMargin(0.16)
+
 cE.cd(1)
 hE.Draw("HIST")
 
@@ -108,6 +112,10 @@ cE.SaveAs("plots/" + name + "_nu_energy.png")
 # Draw the corresponding distributions in cos(zenith angle).
 cCt = ROOT.TCanvas("cCt", "Neutrino zenith angle", 1200, 500)
 cCt.Divide(2, 1)
+
+# Leave enough room for the Y-axis titles in both pads.
+for i in (1, 2):
+    cCt.cd(i).SetLeftMargin(0.16)
 
 cCt.cd(1)
 hCt.Draw("HIST")
