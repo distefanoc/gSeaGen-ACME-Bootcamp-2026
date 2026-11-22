@@ -72,12 +72,12 @@ for sample, color, marker in ((one, ROOT.kBlue, 20),
         hist.SetLineWidth(2)
 
 
-def draw_comparison(key, title, xlabel, output):
+def draw_comparison(pad, key, title, xlabel):
     h1, h5 = one[key], five[key]
-    canvas = ROOT.TCanvas("c_" + key, title, 900, 600)
-    canvas.SetLeftMargin(0.16)  # Same Y-axis margin as plot_neutrino.py.
-    canvas.SetRightMargin(0.05)
-    canvas.SetBottomMargin(0.12)
+    pad.SetLeftMargin(0.16)  # Same Y-axis margin as plot_neutrino.py.
+    pad.SetRightMargin(0.05)
+    pad.SetBottomMargin(0.12)
+    pad.cd()
 
     # Use the same Y scale and show statistical uncertainties on both samples.
     ymax = max(h1.GetMaximum(), h5.GetMaximum())
@@ -89,25 +89,28 @@ def draw_comparison(key, title, xlabel, output):
     h1.Draw("E1")
     h5.Draw("E1 SAME")
 
-    legend = ROOT.TLegend(0.62, 0.76, 0.92, 0.89)
+    legend = ROOT.TLegend(0.60, 0.76, 0.91, 0.89)
     legend.SetBorderSize(0)
     legend.SetFillStyle(0)
     legend.AddEntry(h1, "1 energy bin", "lep")
     legend.AddEntry(h5, "5 energy bins", "lep")
     legend.Draw()
-
-    canvas.Update()
-    canvas.SaveAs(output)
-    return canvas, legend
+    return legend
 
 
 os.makedirs("plots", exist_ok=True)
-cE, legendE = draw_comparison(
-    "hE", "Weighted neutrino energy distributions",
-    "log_{10}(E_{#nu}/GeV)", "plots/compare_nu_energy.png")
-cCt, legendCt = draw_comparison(
-    "hCt", "Weighted neutrino zenith distributions",
-    "cos#theta_{#nu}", "plots/compare_nu_costheta.png")
+canvas = ROOT.TCanvas("cCompare", "Weighted neutrino distributions", 1200, 500)
+canvas.Divide(2, 1)
+
+legendE = draw_comparison(
+    canvas.cd(1), "hE", "Weighted neutrino energy",
+    "log_{10}(E_{#nu}/GeV)")
+legendCt = draw_comparison(
+    canvas.cd(2), "hCt", "Weighted neutrino zenith angle",
+    "cos#theta_{#nu}")
+
+canvas.Update()
+canvas.SaveAs("plots/compare_neutrino.png")
 
 rate1, rate5 = one["rate"], five["rate"]
 print("\nComparison of weighted event rates")
