@@ -1,12 +1,9 @@
-
 import ROOT
 import ctypes
 import math
 from array import array
 import argparse
 import os
-
-
 
 parser = argparse.ArgumentParser(
     description="Plot equatorial coordinates of neutrinos from RX J1713.7-3946"
@@ -45,7 +42,8 @@ def direction_to_equatorial(event):
     ra = ctypes.c_double()
     dec = ctypes.c_double()
 
-    # Reverse neutrino propagation direction
+    # The neutrino track points along its propagation direction.
+    # Reverse it to obtain the direction towards the astrophysical source.
     astro.Direction2Hor(-nu.D1, -nu.D2, -nu.D3, az, alt)
 
     # Horizontal -> equatorial coordinates
@@ -54,6 +52,9 @@ def direction_to_equatorial(event):
     return math.degrees(ra.value) / 15.0, math.degrees(dec.value)
 
 
+# The source coordinates in the XML file refer to J2000.
+# gSeaGen accounts for precession and nutation when generating events.
+# We apply the same corrections to obtain the source position in 2021.
 def source_coordinates_at_mjd(mjd):
     """Apply precession and nutation to the J2000 source coordinates."""
 
@@ -97,6 +98,9 @@ if not f or f.IsZombie():
 
 tree = f.Get("Events")
 
+if not tree:
+    raise RuntimeError("Cannot find Events tree")
+
 ra_values = array("d")
 dec_values = array("d")
 
@@ -116,7 +120,10 @@ print("Dec range:", min(dec_values), max(dec_values))
 ra_min, ra_max = 17.15, 17.32
 dec_min, dec_max = -40.55, -38.95
 
-# Angular extent of the RA axis, accounting for declination
+# RA is measured in hours, with 1 hour corresponding to 15 degrees.
+# At a given declination, the angular separation along RA is
+# reduced by cos(declination).
+# Adjust the canvas dimensions to preserve equal angular scales.
 ra_span_deg = (ra_max - ra_min) * 15.0 * math.cos(math.radians(dec0_deg))
 dec_span_deg = dec_max - dec_min
 
