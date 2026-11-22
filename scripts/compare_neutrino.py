@@ -1,0 +1,125 @@
+import ROOT
+import os
+import sys
+import math
+
+# Compare the weighted neutrino distributions from the 1-bin and 5-bin runs.
+ROOT.gROOT.SetBatch(not bool(os.environ.get("DISPLAY")))
+ROOT.gSystem.Load(os.environ["GSEAGEN"] + "/lib/libGSeaEvent.so")
+
+if len(sys.argv) != 3:
+    sys.exit("Usage: python3 scripts/compare_neutrino.py ONE_BIN.et.root FIVE_BIN.et.root")
+
+nbin = 25
+seconds_per_year = 365.25 * 86400
+
+
+def read_sample(filename, label, suffix):
+    f = ROOT.TFile.Open(filename)
+    if not f or f.IsZombie():
+        raise RuntimeError("Cannot open " + filename)
+
+    header = f.Get("Header")
+    tree = f.Get("Events")
+    if not header or not tree:
+        raise RuntimeError("Missing Header or Events tree in " + filename)
+
+    header.GetEntry(0)
+    gp = header.Header
+    ntot = gp.NTot
+    emin, emax = gp.EvMin, gp.EvMax
+    ctmin, ctmax = gp.CtMin, gp.CtMax
+
+    # Keep the same physical normalisation and binning as plot_neutrino.py.
+    hE = ROOT.TH1D("hE_" + suffix, label, nbin,
+                   math.log10(emin), math.log10(emax))
+    hCt = ROOT.TH1D("hCt_" + suffix, label, nbin, ctmin, ctmax)
+    hE.SetDirectory(0)
+    hCt.SetDirectory(0)
+    hE.Sumw2()
+    hCt.Sumw2()
+
+    for entry in tree:
+        event = entry.Events
+        nu = event.Tracks[0]
+        weight = event.EvtWeight / ntot
+        hE.Fill(math.log10(nu.E), weight)
+        hCt.Fill(nu.D3, weight)
+
+    return {
+        "file": f, "label": label, "hE": hE, "hCt": hCt,
+        "range": (emin, emax, ctmin, ctmax),
+        "saved": tree.GetEntries(), "rate": hE.Integral(),
+    }
+
+
+one = read_sample(sys.argv[1], "1 energy bin", "one")
+five = read_sample(sys.argv[2], "5 energy bins", "five")
+
+if any(not math.isclose(a, b, rel_tol=1e-9, abs_tol=1e-12)
+       for a, b in zip(one["range"], five["range"])):
+    sys.exit("The two simulations have different energy or angular ranges.")
+
+ROOT.gStyle.SetOptStat(0)
+
+for sample, color, marker in ((one, ROOT.kBlue, 20),
+                              (five, ROOT.kRed, 24)):
+    for hist in (sample["hE"], sample["hCt"]):
+        hist.SetLineColor(color)
+        hist.SetMarkerColor(color)
+        hist.SetMarkerStyle(marker)
+        hist.SetMarkerSize(0.8)
+        hist.SetLineWidth(2)
+
+
+def draw_comparison(key, title, xlabel, output):
+    h1, h5 = one[key], five[key]
+    canvas = ROOT.TCanvas("c_" + key, title, 900, 600)
+    canvas.SetLeftMargin(0.16)  # Same Y-axis margin as plot_neutrino.py.
+    canvas.SetRightMargin(0.05)
+    canvas.SetBottomMargin(0.12)
+
+    # Use the same Y scale and show statistical uncertainties on both samples.
+    ymax = max(h1.GetMaximum(), h5.GetMaximum())
+    h1.SetMaximum(ymax * 1.35)
+    h1.SetMinimum(0.0)
+    h1.SetTitle(title)
+    h1.GetXaxis().SetTitle(xlabel)
+    h1.GetYaxis().SetTitle("Event rate (Hz)")
+    h1.Draw("E1")
+    h5.Draw("E1 SAME")
+
+    legend = ROOT.TLegend(0.62, 0.76, 0.92, 0.89)
+    legend.SetBorderSize(0)
+    legend.SetFillStyle(0)
+    legend.AddEntry(h1, "1 energy bin", "lep")
+    legend.AddEntry(h5, "5 energy bins", "lep")
+    legend.Draw()
+
+    canvas.Update()
+    canvas.SaveAs(output)
+    return canvas, legend
+
+
+os.makedirs("plots", exist_ok=True)
+cE, legendE = draw_comparison(
+    "hE", "Weighted neutrino energy distributions",
+    "log_{10}(E_{#nu}/GeV)", "plots/compare_nu_energy.png")
+cCt, legendCt = draw_comparison(
+    "hCt", "Weighted neutrino zenith distributions",
+    "cos#theta_{#nu}", "plots/compare_nu_costheta.png")
+
+rate1, rate5 = one["rate"], five["rate"]
+print("\nComparison of weighted event rates")
+for sample in (one, five):
+    print("\n" + sample["label"] + ":")
+    print(f"  Saved events:         {sample['saved']}")
+    print(f"  Event rate:           {sample['rate']:.4e} Hz")
+    print(f"  Expected events/year: {sample['rate'] * seconds_per_year:.2f}")
+
+if rate1 != 0:
+    ratio = rate5 / rate1
+    print(f"\nRate ratio (5 bins / 1 bin): {ratio:.4f}")
+    print(f"Relative difference:         {(ratio - 1) * 100:+.2f}%")
+else:
+    print("\nRate ratio: undefined (1-bin rate is zero)")
