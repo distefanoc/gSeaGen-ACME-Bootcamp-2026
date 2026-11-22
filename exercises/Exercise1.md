@@ -13,7 +13,7 @@ source setup.sh
 Start the simulation:
 
 ```bash
-bash scripts/run_gseagen_numuCC_1bin.sh
+time bash scripts/run_gseagen_numuCC_1bin.sh
 ```
 
 ### While the simulation is running...
@@ -46,13 +46,14 @@ cat files/numuCC_1bin.1.binstat
 - What is the mean number of neutrinos to simulate?
 - How many neutrinos were actually simulated?
 - How many events were saved?
+- How long did the simulation take (real elapsed time)?
 
 ## 1.2 Run the simulation with five energy bins
 
 Now repeat the generation using five energy bins:
 
 ```bash
-bash scripts/run_gseagen_numuCC_5bin.sh
+time bash scripts/run_gseagen_numuCC_5bin.sh
 ```
 
 ### While the simulation is running...
@@ -86,6 +87,7 @@ cat files/numuCC_5bin.1.binstat
 
 - How many events were saved with five energy bins?
 - How do the generation statistics compare with the one-bin simulation?
+- How does the elapsed generation time compare with the one-bin simulation, and how does the number of saved events change?
 
 ## 1.3 Analyse and compare the results
 
