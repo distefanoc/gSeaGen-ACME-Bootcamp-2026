@@ -31,6 +31,8 @@ Once Apptainer has been successfully installed, follow these instructions:
 
 Instructions, simulation scripts and analysis examples will be provided in this repository.
 
+- [Atmospheric neutrinos: REAL vs WEIGHTED generation](exercises/atmospheric-neutrinos.md)
+
 ## Useful links
 
 - [gSeaGen source code (GitLab)](https://git.km3net.de/opensource/gseagen)
