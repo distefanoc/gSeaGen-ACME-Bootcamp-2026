@@ -17,9 +17,7 @@ OPTIONS=(
     --time "1609459200,1609545600"
     --tune GHE19_00b_00_000
     --event-generator-list CCHEDIS
-    --prop PROPOSAL
     --wgt 0
-    --seed 12345
 )
 
-time apptainer exec "$CONTAINER" gSeaNuEvGen "${OPTIONS[@]}"
+/usr/bin/time -p apptainer exec "$CONTAINER" gSeaNuEvGen "${OPTIONS[@]}"
