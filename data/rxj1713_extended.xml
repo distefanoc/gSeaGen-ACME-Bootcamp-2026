@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<astro_source>
+  <param_set source_name="RXJ1713">
+    <param name="RightAscension">258.39</param>
+    <param name="Declination">-39.76</param>
+    <param name="Equinox">J2000</param>
+    <param name="Radius">0.6</param>
+  </param_set>
+</astro_source>
