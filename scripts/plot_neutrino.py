@@ -44,7 +44,7 @@ hCt = ROOT.TH1D("hCt", "Unweighted events", nbin,
 
 hCtw = ROOT.TH1D("hCtw", "Weighted events", nbin,
                  ctmin, ctmax)
-	       
+
 # Axis titles
 hE.GetXaxis().SetTitle("log_{10}(E_{#nu}/GeV)")
 hE.GetYaxis().SetTitle("MC events")
