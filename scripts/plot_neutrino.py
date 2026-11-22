@@ -1,15 +1,19 @@
 import ROOT
 import os
-import sys
+import argparse
 import math
 
-# Use graphical mode when a display is available; otherwise run without windows.
-ROOT.gROOT.SetBatch(not bool(os.environ.get("DISPLAY")))
 # Load the gSeaGen event classes so ROOT can read the stored objects.
 ROOT.gSystem.Load(os.environ["GSEAGEN"] + "/lib/libGSeaEvent.so")
 
-# Read the ROOT file name from the command line.
-filename = sys.argv[1]
+# Read the input ROOT file from the command line.
+parser = argparse.ArgumentParser(
+    description="Plot neutrino energy and zenith-angle distributions from gSeaGen"
+)
+parser.add_argument("input_file", help="Input gSeaGen ROOT file")
+args = parser.parse_args()
+
+filename = args.input_file
 name = os.path.basename(filename).replace(".et.root", "")
 
 # The Header tree stores generation settings; Events stores simulated events.
@@ -140,3 +144,5 @@ print(f"  Number of saved events: {tree.GetEntries()}")
 print(f"Total MC events: {hE.Integral():.0f}")
 print(f"Total event rate: {hEw.Integral():.4e} Hz")
 print(f"Expected events per year: {hEw.Integral()*365.25*86400:.2f}")
+
+input("Press Enter to close the plot...")
