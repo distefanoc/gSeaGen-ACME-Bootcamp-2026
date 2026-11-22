@@ -1,14 +1,17 @@
 import ROOT
 import os
-import sys
+import argparse
 import math
 
 # Compare the weighted neutrino distributions from the 1-bin and 5-bin runs.
-ROOT.gROOT.SetBatch(not bool(os.environ.get("DISPLAY")))
 ROOT.gSystem.Load(os.environ["GSEAGEN"] + "/lib/libGSeaEvent.so")
 
-if len(sys.argv) != 3:
-    sys.exit("Usage: python3 scripts/compare_neutrino.py ONE_BIN.et.root FIVE_BIN.et.root")
+parser = argparse.ArgumentParser(
+    description="Compare weighted neutrino distributions from two gSeaGen simulations"
+)
+parser.add_argument("one_bin_file", help="ROOT file generated with 1 energy bin")
+parser.add_argument("five_bin_file", help="ROOT file generated with 5 energy bins")
+args = parser.parse_args()
 
 nbin = 25
 seconds_per_year = 365.25 * 86400
@@ -53,12 +56,12 @@ def read_sample(filename, label, suffix):
     }
 
 
-one = read_sample(sys.argv[1], "1 energy bin", "one")
-five = read_sample(sys.argv[2], "5 energy bins", "five")
+one = read_sample(args.one_bin_file, "1 energy bin", "one")
+five = read_sample(args.five_bin_file, "5 energy bins", "five")
 
 if any(not math.isclose(a, b, rel_tol=1e-9, abs_tol=1e-12)
        for a, b in zip(one["range"], five["range"])):
-    sys.exit("The two simulations have different energy or angular ranges.")
+    raise ValueError("The two simulations have different energy or angular ranges.")
 
 ROOT.gStyle.SetOptStat(0)
 
@@ -133,3 +136,5 @@ if rate1 != 0:
     print(f"  Relative rate difference:     {(ratio - 1) * 100:+.2f}%")
 else:
     print("  Event rate ratio (5 / 1):      undefined (zero rate)")
+
+input("Press Enter to close the plot...")
