@@ -79,7 +79,7 @@ Run the analysis:
 apptainer exec "$CONTAINER" python3 scripts/plot_astro_source.py files/rxj1713_point.1.et.root
 ```
 
-The script saves the figure in `plots/rxj1713_point.1_j2000.png`. Press Enter in the terminal when you are ready to close the plot.
+The script saves the figure in `plots/rxj1713_point.1.png`. Press Enter in the terminal when you are ready to close the plot.
 
 The plot shows the neutrino arrival directions as black points and the J2000 source position as a red open circle.
 
@@ -113,7 +113,7 @@ Plot the directions using the **same** analysis script:
 apptainer exec "$CONTAINER" python3 scripts/plot_astro_source.py files/rxj1713_extended.1.et.root
 ```
 
-The figure is saved as `plots/rxj1713_extended.1_j2000.png`. Compare it with `plots/rxj1713_point.1_j2000.png`.
+The figure is saved as `plots/rxj1713_extended.1.png`. Compare it with `plots/rxj1713_point.1.png`.
 
 **Questions:**
 
