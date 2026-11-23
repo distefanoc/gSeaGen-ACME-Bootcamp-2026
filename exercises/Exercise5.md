@@ -74,3 +74,7 @@ The three figures show:
 ## Further exploration
 
 Explore the `gCalcCross` application provided by gSeaGen to investigate how neutrino interaction cross sections depend on energy and interaction type.
+
+---
+
+[Back to the main page](https://github.com/distefanoc/gSeaGen-ACME-School-2026/blob/main/README.md#hands-on-exercises)
