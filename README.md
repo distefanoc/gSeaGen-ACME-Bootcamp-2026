@@ -27,6 +27,24 @@ Once Apptainer has been successfully installed, follow these instructions:
 
 - [Downloading and testing gSeaGen](setup/gSeaGen.md)
 
+### PowerPoint summary (optional)
+
+To create a PowerPoint presentation collecting the plots produced during the hands-on exercises, install `python-pptx` on your Linux system or virtual machine (**outside the Apptainer container**). On Ubuntu, run:
+
+```bash
+sudo apt update
+sudo apt install python3-pip
+python3 -m pip install python-pptx
+```
+
+Then, from the main directory of this repository, run:
+
+```bash
+python3 scripts/create_summary_pptx.py
+```
+
+This creates `gseagen_hands_on_results.pptx` in the main directory. Only plots already available in `plots/` are included, so you can run the script before completing all the exercises and rerun it later to update the presentation. The generated PowerPoint is not tracked by Git.
+
 ## Hands-on exercises
 
 Instructions, simulation scripts and analysis examples will be provided in this repository.
