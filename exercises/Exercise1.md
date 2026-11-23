@@ -12,6 +12,20 @@ By the end of this exercise, you will be able to:
 - Investigate how energy binning affects event generation and the resulting event weights.
 - Compare the expected event rates obtained with different generation configurations.
 
+## Scripts used in this exercise
+
+Open these scripts during the exercise to follow the simulation configuration and analysis steps:
+
+**Simulation scripts:**
+
+- [`run_gseagen_numuCC_1bin.sh`](../scripts/run_gseagen_numuCC_1bin.sh) — Generate neutrino interactions using one energy bin.
+- [`run_gseagen_numuCC_5bin.sh`](../scripts/run_gseagen_numuCC_5bin.sh) — Generate neutrino interactions using five energy bins.
+
+**Analysis scripts:**
+
+- [`plot_neutrino.py`](../scripts/plot_neutrino.py) — Inspect event distributions, weights and estimated event rates.
+- [`compare_neutrino.py`](../scripts/compare_neutrino.py) — Compare weighted distributions from the one-bin and five-bin samples.
+
 ## 1.1 Run the simulation with one energy bin
 
 From your working directory, load the configuration:
