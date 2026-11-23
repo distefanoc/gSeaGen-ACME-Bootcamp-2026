@@ -97,3 +97,7 @@ The following results refer to the pre-generated ROOT samples provided in the `s
 The WEIGHTED/REAL ratio of expected events per day is 1.0140. These values refer to the combined nu_mu + anti-nu_mu sample. Running times are indicative and depend on the machine.
 
 **Conclusion:** By applying the event weights, we recover the expected physical distributions.
+
+---
+
+[Back to the main page](https://github.com/distefanoc/gSeaGen-ACME-School-2026/blob/main/README.md#hands-on-exercises)
