@@ -85,7 +85,7 @@ Each panel shows the total sample (black), nu_mu (red), and anti-nu_mu (green). 
 
 ## 3.4 Compare the results
 
-For the reference samples:
+The following results refer to the pre-generated ROOT samples provided in the `samples/` directory:
 
 | Quantity | REAL | WEIGHTED |
 | --- | ---: | ---: |
