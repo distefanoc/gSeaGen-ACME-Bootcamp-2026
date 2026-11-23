@@ -86,8 +86,7 @@ The plot shows the neutrino arrival directions as black points and the J2000 sou
 **Questions:**
 
 - Why must the neutrino propagation direction be reversed to point towards the source?
-- Where do the generated neutrino directions appear relative to the J2000 source position?
-- Why do the directions of a point-like source cluster at the source position?
+- How do the reconstructed neutrino directions compare with the J2000 source position?
 
 ## 2.3 Simulate and compare an extended source
 
