@@ -14,6 +14,24 @@ By the end of this exercise, you will be able to:
 
 **Note:** The simulation scripts currently use a simple test flux proportional to $E^{-2}$, not a physical spectrum fitted to RX J1713.7−3946. This exercise focuses on the *spatial* distribution; we will not calculate an astrophysical event rate here.
 
+## Scripts and configuration files used in this exercise
+
+Open these files during the exercise to explore the source configuration, simulation parameters, and analysis steps.
+
+**Source configuration files:**
+
+- [`rxj1713_point.xml`](../data/rxj1713_point.xml) — Define the point-like source.
+- [`rxj1713_extended.xml`](../data/rxj1713_extended.xml) — Define the extended source with an angular radius of 0.6°.
+
+**Simulation scripts:**
+
+- [`run_gseagen_rxj1713_point.sh`](../scripts/run_gseagen_rxj1713_point.sh) — Generate neutrino interactions from the point-like source.
+- [`run_gseagen_rxj1713_extended.sh`](../scripts/run_gseagen_rxj1713_extended.sh) — Generate neutrino interactions from the extended source.
+
+**Analysis script:**
+
+- [`plot_astro_source.py`](../scripts/plot_astro_source.py) — Plot the neutrino arrival directions in equatorial coordinates for either source configuration.
+
 ## 2.1 Simulate a point-like source
 
 From the repository's working directory, load the configuration:
