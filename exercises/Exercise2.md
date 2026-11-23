@@ -126,4 +126,4 @@ The plotting script displays a field of at least ±1° around the J2000 source p
 
 ---
 
-[Back to the main page](https://github.com/distefanoc/gSeaGen-ACME-School-2026/blob/main/README.md#hands-on-exercises)
+[Back to the main page](https://github.com/distefanoc/gSeaGen-ACME-Bootcamp-2026/blob/main/README.md#hands-on-exercises)
