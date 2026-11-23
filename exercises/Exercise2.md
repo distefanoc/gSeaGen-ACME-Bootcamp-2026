@@ -9,7 +9,6 @@ By the end of this exercise, you will be able to:
 - Configure a point-like or extended astrophysical neutrino source in gSeaGen.
 - Identify the source position, angular extension, and generation time interval in the simulation inputs.
 - Convert neutrino propagation directions into equatorial coordinates (right ascension and declination).
-- Understand why the source position at the event epoch differs from its J2000 coordinates because of precession and nutation.
 - Compare the angular distributions produced by point-like and extended source models.
 
 **Note:** The simulation scripts currently use a simple test flux proportional to $E^{-2}$, not a physical spectrum fitted to RX J1713.7−3946. This exercise focuses on the *spatial* distribution; we will not calculate an astrophysical event rate here.
@@ -30,7 +29,7 @@ Open these files during the exercise to explore the source configuration, simula
 
 **Analysis script:**
 
-- [`plot_astro_source.py`](../scripts/plot_astro_source.py) — Plot the neutrino arrival directions in equatorial coordinates for either source configuration.
+- [`plot_astro_source.py`](../scripts/plot_astro_source.py) — Plot the neutrino arrival directions in J2000 equatorial coordinates for either source configuration.
 
 ## 2.1 Simulate a point-like source
 
@@ -70,7 +69,9 @@ cat files/rxj1713_point.1.binstat
 
 ## 2.2 Plot the neutrino directions
 
-Examine [plot_astro_source.py](../scripts/plot_astro_source.py). It reads the source coordinates, detector location, and generation start time from the ROOT header, and uses gSeaGen's astronomical transformations to display the incoming neutrino directions.
+Examine [plot_astro_source.py](../scripts/plot_astro_source.py). The script reads the source coordinates and detector location from the ROOT header and converts the neutrino propagation directions into equatorial coordinates using gSeaGen's astronomical utilities. It then expresses the directions in the J2000 reference frame.
+
+During event generation, gSeaGen accounts for precession and nutation. The plotting script includes two functions, `inverse_nutation()` and `inverse_precession()`, to reverse these corrections using the time of each event, since the corresponding inverse transformations are not yet implemented in gSeaGen.
 
 Run the analysis:
 
@@ -78,15 +79,15 @@ Run the analysis:
 apptainer exec "$CONTAINER" python3 scripts/plot_astro_source.py files/rxj1713_point.1.et.root
 ```
 
-The script saves the figure in `plots/rxj1713_point.1.png`. Press Enter in the terminal when you are ready to close the plot.
+The script saves the figure in `plots/rxj1713_point.1_j2000.png`. Press Enter in the terminal when you are ready to close the plot.
 
-The plot shows the neutrino arrival directions as black points, the input source position (assumed J2000) as a red star, and the source position corrected for precession and nutation at the **start of the generation interval** as a green circle. The date shown in the legend comes from the ROOT header.
+The plot shows the neutrino arrival directions as black points and the J2000 source position as a red open circle.
 
 **Questions:**
 
 - Why must the neutrino propagation direction be reversed to point towards the source?
-- Why do the J2000 position and the position at the start of the simulation differ?
-- Why do the generated neutrino directions cluster around the time-corrected position rather than the J2000 position?
+- Where do the generated neutrino directions appear relative to the J2000 source position?
+- Why do the directions of a point-like source cluster at the source position?
 
 ## 2.3 Simulate and compare an extended source
 
@@ -113,7 +114,7 @@ Plot the directions using the **same** analysis script:
 apptainer exec "$CONTAINER" python3 scripts/plot_astro_source.py files/rxj1713_extended.1.et.root
 ```
 
-The figure is saved as `plots/rxj1713_extended.1.png`. Compare it with `plots/rxj1713_point.1.png`.
+The figure is saved as `plots/rxj1713_extended.1_j2000.png`. Compare it with `plots/rxj1713_point.1_j2000.png`.
 
 **Questions:**
 
@@ -122,4 +123,4 @@ The figure is saved as `plots/rxj1713_extended.1.png`. Compare it with `plots/rx
 - What information does the plotting script obtain automatically from the ROOT header?
 - Why is it useful to display both simulations with a common angular scale?
 
-The plotting script displays a field of at least ±1° around the source position at the start of generation, allowing a consistent visual comparison of these two configurations.
+The plotting script displays a field of at least ±1° around the J2000 source position, allowing a consistent visual comparison of these two configurations.
