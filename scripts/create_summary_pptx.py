@@ -4,10 +4,22 @@
 from pathlib import Path
 import sys
 
-from pptx import Presentation
-from pptx.dml.color import RGBColor
-from pptx.enum.text import PP_ALIGN
-from pptx.util import Inches, Pt
+try:
+    import pptx
+    from pptx import Presentation
+    from pptx.dml.color import RGBColor
+    from pptx.enum.text import PP_ALIGN
+    from pptx.util import Inches, Pt
+except ImportError as exc:
+    if exc.name and (exc.name == "pptx" or exc.name.startswith("pptx.")):
+        print("ERROR: python-pptx is not installed or is incomplete.")
+        print("Install it with: python3 -m pip install python-pptx")
+    else:
+        print(f"ERROR: Missing Python dependency: {exc.name}")
+        print("Check your Python installation and required packages.")
+    raise SystemExit(1)
+
+print(f"Using python-pptx version {pptx.__version__}")
 
 
 ROOT = Path(__file__).resolve().parent.parent
