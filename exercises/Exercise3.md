@@ -100,4 +100,4 @@ The WEIGHTED/REAL ratio of expected events per day is 1.0140. These values refer
 
 ---
 
-[Back to the main page](https://github.com/distefanoc/gSeaGen-ACME-School-2026/blob/main/README.md#hands-on-exercises)
+[Back to the main page](https://github.com/distefanoc/gSeaGen-ACME-Bootcamp-2026/blob/main/README.md#hands-on-exercises)
