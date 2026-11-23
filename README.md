@@ -31,6 +31,8 @@ Once Apptainer has been successfully installed, follow these instructions:
 
 Instructions, simulation scripts and analysis examples will be provided in this repository.
 
+- [Exercise 1: Simulation of a diffuse neutrino flux](exercises/Exercise1.md)
+- [Exercise 2: Simulation of an astrophysical neutrino source](exercises/Exercise2.md)
 - [Exercise 3: Atmospheric neutrinos: REAL vs WEIGHTED generation](exercises/Exercise3.md)
 - [Exercise 4: Atmospheric and astrophysical neutrino flux reweighting](exercises/Exercise4.md)
 
