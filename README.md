@@ -35,7 +35,7 @@ Instructions, simulation scripts and analysis examples will be provided in this 
 - [Exercise 2: Simulation of an astrophysical neutrino source](exercises/Exercise2.md)
 - [Exercise 3: Atmospheric neutrinos: REAL vs WEIGHTED generation](exercises/Exercise3.md)
 - [Exercise 4: Atmospheric and astrophysical neutrino flux reweighting](exercises/Exercise4.md)
-- [Exercise 5: Neutrino transmission through the Earth (optional)](exercises/Exercise5.md)
+- [Exercise 5: Neutrino transmission through the Earth](exercises/Exercise5.md)
 
 ## Useful links
 
