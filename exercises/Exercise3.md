@@ -1,101 +1,92 @@
-# Exercise 3 — Atmospheric and astrophysical neutrino flux reweighting
+# Exercise 3 — Atmospheric neutrinos: REAL vs WEIGHTED generation
 
 ## Learning objectives
 
-Use a single Monte Carlo sample generated with gSeaGen to calculate event rates corresponding to different neutrino flux models.
+Compare REAL (unweighted) and WEIGHTED generation of atmospheric neutrino interactions using gSeaGen. Explore how event weights recover the expected physical distributions, and compare the computing times of the two techniques.
 
-We will compare an atmospheric neutrino flux based on the Wang–Yasuda parametrization with a simple astrophysical power-law spectrum.
+Both samples contain atmospheric muon neutrinos and antineutrinos (PDG 14 and -14), with charged-current interactions, energies between 100 GeV and 10 TeV, and a livetime of one day.
 
-The aim is to understand how the same simulated events can be reused for different physical flux hypotheses by changing their weights.
+**During the hands-on:** use the ROOT files provided by the instructors. Running the full event generation is optional and can be done after the school: it takes several minutes.
 
 ## Scripts used in this exercise
 
-Open these scripts during the exercise to explore the simulation configuration, the atmospheric neutrino flux model, and the event reweighting procedure.
+Open these scripts during the exercise to explore the generation configurations and analysis steps.
 
-**Simulation script:**
+**Simulation scripts (optional during the hands-on):**
 
-- [`run_gseagen_diffuse.sh`](../scripts/run_gseagen_diffuse.sh) — Generate a diffuse sample of muon neutrinos and antineutrinos (PDG 14 and -14) with an $E^{-2}$ spectrum.
+- [`run_gseagen_honda_real.sh`](../scripts/run_gseagen_honda_real.sh) — Generate atmospheric neutrino events using REAL generation.
+- [`run_gseagen_honda_weighted.sh`](../scripts/run_gseagen_honda_weighted.sh) — Generate atmospheric neutrino events using WEIGHTED generation.
 
 **Analysis scripts:**
 
-- [`atmospheric_flux.py`](../scripts/atmospheric_flux.py) — Calculate the atmospheric neutrino flux using the Wang–Yasuda parametrization.
-- [`plot_atmo_cosmic_reweight.py`](../scripts/plot_atmo_cosmic_reweight.py) — Reweight the generated events using different flux models and compare the resulting energy distributions and event rates.
+- [`plot_honda_real.py`](../scripts/plot_honda_real.py) — Illustrate the use of constant event weights.
+- [`plot_honda_comparison.py`](../scripts/plot_honda_comparison.py) — Compare REAL and WEIGHTED distributions before and after applying event weights.
 
-## 1. Generate a diffuse neutrino sample
+## 3.1 Generate atmospheric neutrino events (optional)
 
-From the top-level directory of the repository, run:
-
-```bash
-bash scripts/run_gseagen_diffuse.sh
-```
-
-The script generates muon neutrinos and antineutrinos (PDG 14 and -14) with energies between 100 GeV and 1 PeV, using the flux
-
-$$
-\Phi(E)=10^{-5}E^{-2}
-$$
-
-where energy is in GeV and the flux is in GeV⁻¹ m⁻² s⁻¹ sr⁻¹. The same flux is used for both muon neutrinos and antineutrinos.
-
-The generated ROOT file is:
-
-`files/atmo_cosmic_reweight.1.et.root`
-
-## 2. Reweight the events
-
-The gSeaGen output contains the information needed to calculate event rates for different flux hypotheses.
-
-For the original flux, the event rate is obtained using
-
-$$
-w_{\mathrm{original}}=\frac{\mathrm{EvtWeight}}{N_{\mathrm{tot}}}.
-$$
-
-For a different flux model,
-
-$$
-w_{\mathrm{target}}=
-\frac{\mathrm{GenWeight}}{N_{\mathrm{tot}}}
-\Phi_{\mathrm{target}}(E,\theta,\mathrm{PDG}).
-$$
-
-We will use the Wang–Yasuda parametrization of the conventional atmospheric muon neutrino flux, which includes contributions from pion and kaon decays.
-
-gSeaGen supports the use of atmospheric neutrino flux tables, such as Honda, and examples are available in the gSeaGen documentation. However, the Honda tables used here extend only up to 10 TeV, while our simulated energy range reaches 1 PeV. For this exercise, we therefore use the analytical Wang–Yasuda parametrization to calculate the atmospheric flux over the full energy range, keeping in mind its limitations at high energies.
-
-The atmospheric flux is calculated by the function `atmospheric_numu_flux()` implemented in [`atmospheric_flux.py`](../scripts/atmospheric_flux.py). This function is called by `plot_atmo_cosmic_reweight.py` to calculate the new event weights.
-
-The parametrization describes the atmospheric flux at the Earth's surface and does not include neutrino absorption in the Earth, oscillations, or the prompt component.
-
-**Reference:** Y. Wang and O. Yasuda, *Search for sterile neutrinos by shower events at a future neutrino telescope*, Progress of Theoretical and Experimental Physics **2022**, 023B04 (2022), Section 4.1.1, Eq. (54). [DOI: 10.1093/ptep/ptac010](https://doi.org/10.1093/ptep/ptac010).
-
-## 3. Compare the two flux hypotheses
-
-From the top-level directory of the repository, run:
+From the repository's top-level directory, the generation scripts are:
 
 ```bash
-python3 scripts/plot_atmo_cosmic_reweight.py
+bash scripts/run_gseagen_honda_real.sh
+bash scripts/run_gseagen_honda_weighted.sh
 ```
 
-The script reads the same Monte Carlo sample and calculates event rates for the original power-law flux and the atmospheric flux.
+The REAL script generates events according to the physical atmospheric neutrino flux. The WEIGHTED script uses an artificial generation spectrum and assigns event weights. Both scripts use the Honda atmospheric flux for nu_mu and anti-nu_mu.
 
-The resulting plot is saved as:
+The generated ROOT event files are:
 
-`plots/atmo_cosmic_reweight.png`
+- `files/honda_real.1.et.root`
+- `files/honda_weighted.1.et.root`
 
-The plot shows the total contribution and the separate contributions from muon neutrinos and antineutrinos.
+If you are using the pre-generated samples, place these two files in the `files/` directory before continuing. The instructors will provide the files separately; they are not generated by cloning this repository.
 
-## 4. Questions
+## 3.2 A simple example of constant event weights
 
-1. Why can the same Monte Carlo sample be used for different neutrino flux hypotheses?
-2. What is the difference between `GenWeight` and `EvtWeight`?
-3. Why are the neutrino and antineutrino event rates different?
-4. How does changing the flux model affect the energy distribution of the expected events?
+In the configured gSeaGen environment, run:
 
-## Note
+```bash
+python3 scripts/plot_honda_real.py
+```
 
-The Wang–Yasuda parametrization is an approximation and is not intended for precision predictions, particularly at high energies.
+This script uses the REAL sample to illustrate scaling a one-day sample to one week. Examine the generated, scaled and weighted energy histograms.
 
-**Further exercise:** Try replacing the Wang–Yasuda parametrization with a more realistic atmospheric neutrino flux, for example using Daemonflux, a data-driven model calibrated with atmospheric muon measurements. Compare the resulting energy distributions and event rates.
+**Question:** Why do the scaled histogram and the histogram filled with a constant weight of 7 overlap?
 
-**Alternative approach:** gSeaGen can also read user-defined neutrino fluxes provided as ROOT `TGraph` objects and calculate the corresponding event weights directly during generation. This allows more realistic flux models to be used without implementing the flux calculation in the analysis script.
+## 3.3 Compare REAL and WEIGHTED generation
+
+Run:
+
+```bash
+python3 scripts/plot_honda_comparison.py
+```
+
+Open `plots/honda_comparison_4plots.png`. The canvas contains four panels:
+
+- Top left: energy distribution before applying event weights
+- Top right: energy distribution after weighting, compared with REAL
+- Bottom left: zenith-angle cosine before weighting
+- Bottom right: zenith-angle cosine after weighting, compared with REAL
+
+Each panel shows the total sample (black), nu_mu (red), and anti-nu_mu (green). In the right-hand panels, REAL is shown with points and statistical errors, and WEIGHTED with lines.
+
+**Questions:**
+
+1. Why do the distributions before weighting differ from the physical distributions?
+2. What changes when event weights are applied?
+3. Why do nu_mu and anti-nu_mu have different contributions?
+4. How do the event rates and computing times compare between REAL and WEIGHTED generation?
+
+## 3.4 Compare the results
+
+For the reference samples:
+
+| Quantity | REAL | WEIGHTED |
+| --- | ---: | ---: |
+| Saved events | 7,325 | 17,108 |
+| Expected events per day | 7,325.00 | 7,427.47 |
+| Event rate (Hz) | 8.4780e-02 | 8.5966e-02 |
+| Running time | 34 min 42 s | 9 min 02 s |
+
+The WEIGHTED/REAL ratio of expected events per day is 1.0140. These values refer to the combined nu_mu + anti-nu_mu sample. Running times are indicative and depend on the machine.
+
+**Conclusion:** By applying the event weights, we recover the expected physical distributions.
