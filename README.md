@@ -41,6 +41,20 @@ Instructions, simulation scripts and analysis examples will be provided in this 
 - [Exercise 4: Atmospheric and astrophysical neutrino flux reweighting](exercises/Exercise4.md)
 - [Exercise 5: Neutrino transmission through the Earth](exercises/Exercise5.md)
 
+### Generating a PowerPoint summary
+
+Once you have completed the exercises, you can automatically generate a PowerPoint presentation containing your results.
+
+From the main directory of the repository, run the following command **outside the Apptainer container**:
+
+```bash
+python3 scripts/create_summary_pptx.py
+```
+
+The script creates `gseagen_hands_on_results.pptx` in the main directory of the repository.
+
+Only the available plots are included, so you can run the script at any time and rerun it as you complete more exercises.
+
 ## Useful links
 
 - [gSeaGen source code (GitLab)](https://git.km3net.de/opensource/gseagen)
