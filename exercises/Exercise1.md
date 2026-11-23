@@ -95,10 +95,10 @@ In the second terminal, from the working directory, load the configuration and r
 
 ```bash
 source setup.sh
-apptainer exec "$CONTAINER" python3 -i scripts/plot_neutrino.py files/numuCC_1bin.1.et.root
+apptainer exec "$CONTAINER" python3 scripts/plot_neutrino.py files/numuCC_1bin.1.et.root
 ```
 
-Inspect the energy and zenith-angle distributions, both weighted and unweighted, and the event rates printed by the script. Exit Python with `exit()` when you are finished.
+Inspect the energy and zenith-angle distributions, both weighted and unweighted, and the event rates printed by the script. Press Enter to close the plot when you are finished.
 
 When the five-bin simulation finishes, check its output files and generation statistics:
 
@@ -118,7 +118,7 @@ cat files/numuCC_5bin.1.binstat
 You have already analysed the one-bin sample. Now run the same script on the five-bin output:
 
 ```bash
-apptainer exec "$CONTAINER" python3 -i scripts/plot_neutrino.py files/numuCC_5bin.1.et.root
+apptainer exec "$CONTAINER" python3 scripts/plot_neutrino.py files/numuCC_5bin.1.et.root
 ```
 
 Compare the unweighted and weighted neutrino energy and zenith-angle distributions, as well as the total event rates.
@@ -134,7 +134,7 @@ Compare the unweighted and weighted neutrino energy and zenith-angle distributio
 Run [compare_neutrino.py](../scripts/compare_neutrino.py) to overlay the weighted energy and zenith-angle distributions from the one-bin and five-bin simulations:
 
 ```bash
-apptainer exec "$CONTAINER" python3 -i scripts/compare_neutrino.py files/numuCC_1bin.1.et.root files/numuCC_5bin.1.et.root
+apptainer exec "$CONTAINER" python3 scripts/compare_neutrino.py files/numuCC_1bin.1.et.root files/numuCC_5bin.1.et.root
 ```
 
 Inspect the two panels in `plots/compare_neutrino.png`. The blue points correspond to one energy bin and the red points to five energy bins; the error bars show statistical uncertainties. The terminal also prints the saved event counts, the estimated event rates and their ratio (5 bins / 1 bin).
