@@ -31,9 +31,9 @@ bash scripts/run_gseagen_diffuse.sh
 
 The script generates muon neutrinos and antineutrinos (PDG 14 and -14) with energies between 100 GeV and 1 PeV, using the flux
 
-\[
+$
 \Phi(E)=10^{-5}E^{-2}
-\]
+$
 
 where energy is in GeV and the flux is in GeV⁻¹ m⁻² s⁻¹ sr⁻¹, separately for each neutrino species.
 
@@ -47,17 +47,17 @@ The gSeaGen output contains the information needed to calculate event rates for 
 
 For the original flux, the event rate is obtained using
 
-\[
+$
 w_{\mathrm{original}}=\frac{\mathrm{EvtWeight}}{N_{\mathrm{tot}}}.
-\]
+$
 
 For a different flux model,
 
-\[
+$
 w_{\mathrm{target}}=
 \frac{\mathrm{GenWeight}}{N_{\mathrm{tot}}}
 \Phi_{\mathrm{target}}(E,\theta,\mathrm{PDG}).
-\]
+$
 
 We will use the Wang–Yasuda parametrization to calculate atmospheric neutrino weights.
 
