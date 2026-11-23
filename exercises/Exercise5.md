@@ -1,4 +1,4 @@
-# Exercise 5 — Neutrino cross sections and Earth transmission (optional)
+# Exercise 5 — Neutrino transmission through the Earth (optional)
 
 ## Learning objectives
 
@@ -11,14 +11,11 @@ By the end of this exercise, you will be able to:
 - Calculate the Earth transmission probability with `gCalcPEarth`.
 - Visualize its dependence on neutrino energy and direction using `gPlotPEarth`.
 - Interpret the differences between neutrinos and antineutrinos.
-- Optionally explore neutrino interaction cross sections with `gCalcCross` and `gPlotCross`.
 
 ## Applications used in this exercise
 
 - `gCalcPEarth` — Calculate the probability for neutrinos to cross the Earth without undergoing the interactions included in the calculation.
 - `gPlotPEarth` — Visualize the resulting transmission probabilities.
-- `gCalcCross` — Calculate neutrino interaction cross sections (optional).
-- `gPlotCross` — Plot the calculated cross sections (optional).
 
 ## 5.1 Calculate the Earth transmission probability
 
@@ -71,36 +68,6 @@ The three figures show:
 
 **Note:** This calculation does not describe full neutrino transport with regeneration. In particular, it does not include tau-neutrino regeneration through charged-current interactions followed by tau decay.
 
-## 5.3 Explore neutrino cross sections (optional)
+## Further exploration
 
-If time permits, use `gCalcCross` to calculate charged-current and neutral-current cross sections for muon neutrinos and antineutrinos in seawater and rock:
-
-```bash
-gCalcCross \
-  -n 14,-14 \
-  -i CC,NC \
-  -m GHE19_00b_00_000 \
-  -t COMP:SeaWater,Rock \
-  -o files/xsec_cc_nc.root
-```
-
-With the HEDIS tune, the CC and NC interaction selections are mapped to `CCHEDIS` and `NCHEDIS`.
-
-Plot the results:
-
-```bash
-gPlotCross \
-  -i files/xsec_cc_nc.root \
-  -n 14,-14 \
-  -t SeaWater,Rock \
-  -p 1 \
-  -f pdf
-```
-
-The PDF is written to the current directory. Inspect the cross sections, the cross sections divided by energy, and the interaction lengths.
-
-**Questions:**
-
-- How do the cross sections vary with neutrino energy?
-- How do the charged-current and neutral-current results compare?
-- Why can the interaction lengths differ between seawater and rock even when their cross sections are very similar?
+If you have time, try running `gCalcCross` to explore neutrino interaction cross sections and investigate how they depend on energy and interaction type.
