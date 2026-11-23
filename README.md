@@ -27,36 +27,9 @@ Once Apptainer has been successfully installed, follow these instructions:
 
 - [Downloading and testing gSeaGen](setup/gSeaGen.md)
 
-### PowerPoint summary (optional)
+To prepare the optional PowerPoint summary, follow these installation instructions:
 
-To generate a PowerPoint presentation with the results of the hands-on exercises, install the `python-pptx` package in your Linux environment (**outside the Apptainer container**):
-
-- **Linux:** Open a terminal.
-- **macOS:** Open a terminal inside your Lima virtual machine.
-- **Windows:** Open the Ubuntu terminal (WSL2).
-
-First, check whether `pip` is already installed:
-
-```bash
-python3 -m pip --version
-```
-
-If the command works, install `python-pptx`:
-
-```bash
-python3 -m pip install python-pptx
-```
-
-If you get `No module named pip`, install `pip` first. On Ubuntu (including Ubuntu in Lima or WSL2), run:
-
-```bash
-sudo apt update
-sudo apt install python3-pip
-```
-
-Then run `python3 -m pip install python-pptx`. On other Linux distributions, install `pip` using your distribution's package manager.
-
-If your Linux distribution prevents installing packages directly with `pip` (for example, an `externally-managed-environment` error), use a Python virtual environment instead.
+- [Installing python-pptx](setup/PowerPoint.md)
 
 ## Hands-on exercises
 
