@@ -168,12 +168,11 @@ def main():
 
     left_margin, right_margin = 0.14, 0.05
     bottom_margin, top_margin = 0.12, 0.08
-    canvas_width = 700
+    canvas_width = 600
     plot_width = canvas_width*(1-left_margin-right_margin)
     ra_span_deg = (ra_max-ra_min)*15*cos_dec
     plot_height = plot_width*(dec_max-dec_min)/ra_span_deg
-    canvas_height = max(400, round(plot_height/(1-bottom_margin-top_margin)))
-
+    canvas_height = max(400, round(plot_height/(1-bottom_margin-top_margin)) + 22)
     canvas = ROOT.TCanvas("canvas", source_name, canvas_width, canvas_height)
     canvas.SetLeftMargin(left_margin)
     canvas.SetRightMargin(right_margin)
@@ -213,6 +212,7 @@ def main():
     legend.Draw()
     canvas.Modified()
     canvas.Update()
+    
     os.makedirs("plots", exist_ok=True)
     name = os.path.basename(args.input_file)
     name = name[:-8] if name.endswith(".et.root") else os.path.splitext(name)[0]
