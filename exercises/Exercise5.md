@@ -1,4 +1,4 @@
-# Exercise 5 — Neutrino transmission through the Earth (optional)
+# Exercise 5 — Neutrino transmission through the Earth
 
 ## Learning objectives
 
