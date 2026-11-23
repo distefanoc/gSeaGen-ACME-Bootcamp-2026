@@ -77,4 +77,4 @@ Explore the `gCalcCross` application provided by gSeaGen to investigate how neut
 
 ---
 
-[Back to the main page](https://github.com/distefanoc/gSeaGen-ACME-School-2026/blob/main/README.md#hands-on-exercises)
+[Back to the main page](https://github.com/distefanoc/gSeaGen-ACME-Bootcamp-2026/blob/main/README.md#hands-on-exercises)
