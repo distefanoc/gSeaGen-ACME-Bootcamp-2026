@@ -73,4 +73,4 @@ The three figures show:
 
 ## Further exploration
 
-If you have time, try running `gCalcCross` to explore neutrino interaction cross sections and investigate how they depend on energy and interaction type.
+Explore the `gCalcCross` application provided by gSeaGen to investigate how neutrino interaction cross sections depend on energy and interaction type.
