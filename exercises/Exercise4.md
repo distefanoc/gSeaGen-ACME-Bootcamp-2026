@@ -120,3 +120,7 @@ The Wang–Yasuda parametrization is an approximation and is not intended for pr
 **Further exercise:** Try replacing the Wang–Yasuda parametrization with a more realistic atmospheric neutrino flux, for example using Daemonflux, a data-driven model calibrated with atmospheric muon measurements. Compare the resulting energy distributions and event rates.
 
 **Alternative approach:** gSeaGen can also read user-defined neutrino fluxes provided as ROOT `TGraph` objects and calculate the corresponding event weights directly during generation. This allows more realistic flux models to be used without implementing the flux calculation in the analysis script.
+
+---
+
+[Back to the main page](https://github.com/distefanoc/gSeaGen-ACME-School-2026/blob/main/README.md#hands-on-exercises)
