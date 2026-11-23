@@ -144,3 +144,7 @@ Inspect the two panels in `plots/compare_neutrino.png`. The blue points correspo
 - Are the two weighted distributions consistent within statistical fluctuations?
 - What is the ratio of the estimated event rates?
 - Why does the five-bin simulation produce more saved events while giving a consistent physical event rate?
+
+---
+
+[Back to the main page](https://github.com/distefanoc/gSeaGen-ACME-School-2026/blob/main/README.md#hands-on-exercises)
