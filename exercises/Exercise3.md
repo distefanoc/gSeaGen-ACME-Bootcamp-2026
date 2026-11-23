@@ -1,6 +1,6 @@
 # Exercise 3 — Atmospheric and astrophysical neutrino flux reweighting
 
-## Objective
+## Learning objectives
 
 Use a single Monte Carlo sample generated with gSeaGen to calculate event rates corresponding to different neutrino flux models.
 
@@ -8,7 +8,20 @@ We will compare an atmospheric neutrino flux based on the Wang–Yasuda parametr
 
 The aim is to understand how the same simulated events can be reused for different physical flux hypotheses by changing their weights.
 
-## 1. Generate a diffuse neutrino sample (optional)
+## Scripts used in this exercise
+
+Open these scripts during the exercise to explore the simulation configuration, the atmospheric neutrino flux model, and the event reweighting procedure.
+
+**Simulation script:**
+
+- [`run_gseagen_diffuse.sh`](../scripts/run_gseagen_diffuse.sh) — Generate a diffuse sample of muon neutrinos and antineutrinos (PDG 14 and -14) with an $E^{-2}$ spectrum.
+
+**Analysis scripts:**
+
+- [`atmospheric_flux.py`](../scripts/atmospheric_flux.py) — Calculate the atmospheric neutrino flux using the Wang–Yasuda parametrization.
+- [`plot_atmo_cosmic_reweight.py`](../scripts/plot_atmo_cosmic_reweight.py) — Reweight the generated events using different flux models and compare the resulting energy distributions and event rates.
+
+## 1. Generate a diffuse neutrino sample
 
 From the top-level directory of the repository, run:
 
@@ -27,8 +40,6 @@ where energy is in GeV and the flux is in GeV⁻¹ m⁻² s⁻¹ sr⁻¹, separa
 The generated ROOT file is:
 
 `files/atmo_cosmic_reweight.1.et.root`
-
-**During the hands-on:** use the pre-generated ROOT file provided by the instructors. Running the generation is optional.
 
 ## 2. Reweight the events
 
