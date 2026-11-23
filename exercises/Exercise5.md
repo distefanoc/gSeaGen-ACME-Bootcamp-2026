@@ -4,9 +4,11 @@
 
 Explore how the Earth becomes less transparent to neutrinos as their energy increases, and how the transmission probability depends on the arrival direction.
 
-In this optional exercise, we will use gSeaGen utilities to calculate and plot the neutrino transmission probability through the Earth, without generating Monte Carlo events.
+In this exercise, we will use two applications provided by gSeaGen, `gCalcPEarth` and `gPlotPEarth`, to calculate and plot the neutrino transmission probability through the Earth, without generating Monte Carlo events.
 
 By the end of this exercise, you will be able to:
+
+- Use gSeaGen applications to study neutrino transmission through the Earth.
 
 - Calculate the Earth transmission probability with `gCalcPEarth`.
 - Visualize its dependence on neutrino energy and direction using `gPlotPEarth`.
