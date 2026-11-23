@@ -29,21 +29,34 @@ Once Apptainer has been successfully installed, follow these instructions:
 
 ### PowerPoint summary (optional)
 
-To create a PowerPoint presentation collecting the plots produced during the hands-on exercises, install `python-pptx` on your Linux system or virtual machine (**outside the Apptainer container**). On Ubuntu, run:
+To generate a PowerPoint presentation with the results of the hands-on exercises, install the `python-pptx` package in your Linux environment (**outside the Apptainer container**):
+
+- **Linux:** Open a terminal.
+- **macOS:** Open a terminal inside your Lima virtual machine.
+- **Windows:** Open the Ubuntu terminal (WSL2).
+
+First, check whether `pip` is already installed:
+
+```bash
+python3 -m pip --version
+```
+
+If the command works, install `python-pptx`:
+
+```bash
+python3 -m pip install python-pptx
+```
+
+If you get `No module named pip`, install `pip` first. On Ubuntu (including Ubuntu in Lima or WSL2), run:
 
 ```bash
 sudo apt update
 sudo apt install python3-pip
-python3 -m pip install python-pptx
 ```
 
-Then, from the main directory of this repository, run:
+Then run `python3 -m pip install python-pptx`. On other Linux distributions, install `pip` using your distribution's package manager.
 
-```bash
-python3 scripts/create_summary_pptx.py
-```
-
-This creates `gseagen_hands_on_results.pptx` in the main directory. Only plots already available in `plots/` are included, so you can run the script before completing all the exercises and rerun it later to update the presentation. The generated PowerPoint is not tracked by Git.
+If your Linux distribution prevents installing packages directly with `pip` (for example, an `externally-managed-environment` error), use a Python virtual environment instead.
 
 ## Hands-on exercises
 
