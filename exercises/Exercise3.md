@@ -6,7 +6,7 @@ Compare REAL (unweighted) and WEIGHTED generation of atmospheric neutrino intera
 
 Both samples contain atmospheric muon neutrinos and antineutrinos (PDG 14 and -14), with charged-current interactions, energies between 100 GeV and 10 TeV, and a livetime of one day.
 
-**During the hands-on:** use the pre-generated ROOT samples included in this repository. Generating the samples yourself is optional and can be done after the school (approximately 35 minutes for REAL and 9 minutes for WEIGHTED generation in the reference runs).
+**During the hands-on:** use the pre-generated ROOT samples included in this repository. Generating the samples yourself is optional and can be done after the bootcamp (approximately 35 minutes for REAL and 9 minutes for WEIGHTED generation in the reference runs).
 
 ## Scripts used in this exercise
 
