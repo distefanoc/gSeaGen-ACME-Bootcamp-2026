@@ -2,7 +2,7 @@
 
 Apptainer requires a Linux environment. On Windows, we will use the Windows Subsystem for Linux (WSL2), which allows Linux applications to run on Windows.
 
-**Note:** These instructions are based on the official Apptainer and Microsoft documentation. This setup has not been directly tested with gSeaGen by the hands-on session organisers. Please complete the installation and test gSeaGen before the school.
+**Note:** These instructions are based on the official Apptainer and Microsoft documentation. This setup has not been directly tested with gSeaGen by the hands-on session organisers. Please complete the installation and test gSeaGen before the bootcamp.
 
 ## 1. System requirements
 
@@ -129,7 +129,7 @@ explorer.exe .
 
 From the Ubuntu terminal, proceed to the [gSeaGen setup instructions](gSeaGen.md).
 
-Please report any installation or execution problems before the school.
+Please report any installation or execution problems before the bootcamp.
 
 ## Useful links
 
