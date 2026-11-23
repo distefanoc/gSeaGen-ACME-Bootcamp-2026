@@ -120,10 +120,10 @@ def main():
     blank = prs.slide_layouts[6]
 
     cover = prs.slides.add_slide(blank)
-    add_text(cover, "gSeaGen — ACME School 2026", Inches(0.85),
+    add_text(cover, "ACME Neutrino Astronomy Bootcamp 2026", Inches(0.85),
              Inches(2.35), Inches(11.65), Inches(0.9), 36, True,
              PP_ALIGN.CENTER)
-    add_text(cover, "Hands-on Results", Inches(0.85), Inches(3.45),
+    add_text(cover, "gSeaGen - Hands-on Results", Inches(0.85), Inches(3.45),
              Inches(11.65), Inches(0.65), 26, False, PP_ALIGN.CENTER)
 
     for title, figures in available:
