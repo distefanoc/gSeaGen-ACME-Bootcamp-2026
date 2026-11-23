@@ -9,7 +9,6 @@ In this exercise, we will use two applications provided by gSeaGen, `gCalcPEarth
 By the end of this exercise, you will be able to:
 
 - Use gSeaGen applications to study neutrino transmission through the Earth.
-
 - Calculate the Earth transmission probability with `gCalcPEarth`.
 - Visualize its dependence on neutrino energy and direction using `gPlotPEarth`.
 - Interpret the differences between neutrinos and antineutrinos.
@@ -21,16 +20,18 @@ By the end of this exercise, you will be able to:
 
 ## 5.1 Calculate the Earth transmission probability
 
-From the top-level directory of the repository, with the gSeaGen container environment loaded, create the output directories if necessary:
+From the top-level directory of the repository, load the configuration (if you have not already done so):
 
 ```bash
-mkdir -p files plots
+source setup.sh
 ```
+
+This defines `$CONTAINER` and creates the `files/` and `plots/` directories. The gSeaGen applications run inside the Apptainer container using `apptainer exec`.
 
 Run:
 
 ```bash
-gCalcPEarth -o files/pearth.root
+apptainer exec "$CONTAINER" gCalcPEarth -o files/pearth.root
 ```
 
 The default configuration uses the GENIE tune `GHE19_00b_00_000`, a detector depth of 3500 m and a cross-section scaling factor of `k = 1`. The calculation covers all neutrino and antineutrino flavours.
@@ -44,13 +45,13 @@ Use `gPlotPEarth` to produce three complementary views of the same calculation. 
 Run these commands from the repository's top-level directory:
 
 ```bash
-gPlotPEarth -i files/pearth.root -p 1 -f png
+apptainer exec "$CONTAINER" gPlotPEarth -i files/pearth.root -p 1 -f png
 mv pearth.png plots/pearth_2d.png
 
-gPlotPEarth -i files/pearth.root -p 2 -f png
+apptainer exec "$CONTAINER" gPlotPEarth -i files/pearth.root -p 2 -f png
 mv pearth.png plots/pearth_vs_energy.png
 
-gPlotPEarth -i files/pearth.root -p 3 -f png
+apptainer exec "$CONTAINER" gPlotPEarth -i files/pearth.root -p 3 -f png
 mv pearth.png plots/pearth_vs_costheta.png
 ```
 
