@@ -61,6 +61,8 @@ $$
 
 We will use the Wang–Yasuda parametrization of the conventional atmospheric muon neutrino flux, which includes contributions from pion and kaon decays.
 
+gSeaGen supports the use of atmospheric neutrino flux tables, such as Honda, and examples are available in the gSeaGen documentation. However, the Honda tables used here extend only up to 10 TeV, while our simulated energy range reaches 1 PeV. For this exercise, we therefore use the analytical Wang–Yasuda parametrization to calculate the atmospheric flux over the full energy range, keeping in mind its limitations at high energies.
+
 The atmospheric flux is calculated by the function `atmospheric_numu_flux()` implemented in [`atmospheric_flux.py`](../scripts/atmospheric_flux.py). This function is called by `plot_atmo_cosmic_reweight.py` to calculate the new event weights.
 
 The parametrization describes the atmospheric flux at the Earth's surface and does not include neutrino absorption in the Earth, oscillations, or the prompt component.
@@ -94,4 +96,6 @@ The plot shows the total contribution and the separate contributions from muon n
 
 The Wang–Yasuda parametrization is an approximation and is not intended for precision predictions, particularly at high energies.
 
-**Further exercise:** Try replacing it with a more accurate atmospheric neutrino flux model and compare the resulting energy distributions and event rates.
+**Further exercise:** Try replacing the Wang–Yasuda parametrization with a more realistic atmospheric neutrino flux, for example using Daemonflux, a data-driven model calibrated with atmospheric muon measurements. Compare the resulting energy distributions and event rates.
+
+**Alternative approach:** gSeaGen can also read user-defined neutrino fluxes provided as ROOT `TGraph` objects and calculate the corresponding event weights directly during generation. This allows more realistic flux models to be used without implementing the flux calculation in the analysis script.
