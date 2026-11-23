@@ -123,3 +123,7 @@ The figure is saved as `plots/rxj1713_extended.1.png`. Compare it with `plots/rx
 - Why is it useful to display both simulations with a common angular scale?
 
 The plotting script displays a field of at least ±1° around the J2000 source position, allowing a consistent visual comparison of these two configurations.
+
+---
+
+[Back to the main page](https://github.com/distefanoc/gSeaGen-ACME-School-2026/blob/main/README.md#hands-on-exercises)
