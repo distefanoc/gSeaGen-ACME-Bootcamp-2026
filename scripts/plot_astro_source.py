@@ -216,7 +216,7 @@ def main():
     os.makedirs("plots", exist_ok=True)
     name = os.path.basename(args.input_file)
     name = name[:-8] if name.endswith(".et.root") else os.path.splitext(name)[0]
-    output_file = os.path.join("plots", name+"_j2000.png")
+    output_file = os.path.join("plots", name+".png")
     canvas.SaveAs(output_file)
     print("Saved plot:", output_file)
     f.Close()
