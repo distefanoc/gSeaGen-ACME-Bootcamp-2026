@@ -1,8 +1,8 @@
-# gSeaGen – ACME Neutrino Astronomy School 2026
+# gSeaGen – ACME Neutrino Astronomy Bootcamp 2026
 
 Hands-on sessions on neutrino event simulation with gSeaGen.
 
-**ACME Neutrino Astronomy School**  
+**ACME Neutrino Astronomy Bootcamp**  
 Aussois, France – November 29–December 4, 2026
 
 ## Overview
@@ -17,7 +17,7 @@ We will use gSeaGen distributed as an Apptainer container that includes all the 
 
 The gSeaGen version used during the hands-on sessions is specified in the [setup.sh](setup.sh) configuration file.
 
-Please complete the software setup **before the school** by following the instructions for your operating system:
+Please complete the software setup **before the bootcamp** by following the instructions for your operating system:
 
 - [Linux](setup/Linux.md)
 - [macOS](setup/macOS.md)
