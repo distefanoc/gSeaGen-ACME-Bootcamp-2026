@@ -147,4 +147,4 @@ Inspect the two panels in `plots/compare_neutrino.png`. The blue points correspo
 
 ---
 
-[Back to the main page](https://github.com/distefanoc/gSeaGen-ACME-School-2026/blob/main/README.md#hands-on-exercises)
+[Back to the main page](https://github.com/distefanoc/gSeaGen-ACME-Bootcamp-2026/blob/main/README.md#hands-on-exercises)
