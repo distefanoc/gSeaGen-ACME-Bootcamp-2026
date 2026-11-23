@@ -123,4 +123,4 @@ The Wang–Yasuda parametrization is an approximation and is not intended for pr
 
 ---
 
-[Back to the main page](https://github.com/distefanoc/gSeaGen-ACME-School-2026/blob/main/README.md#hands-on-exercises)
+[Back to the main page](https://github.com/distefanoc/gSeaGen-ACME-Bootcamp-2026/blob/main/README.md#hands-on-exercises)
