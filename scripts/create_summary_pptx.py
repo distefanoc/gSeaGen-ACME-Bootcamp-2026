@@ -32,8 +32,8 @@ SLIDES = [
         ("compare_neutrino.png", None),
     ]),
     ("Exercise 2 — Astrophysical neutrino source", [
-        ("rxj1713_point.1.png", "Point source"),
-        ("rxj1713_extended.1.png", "Extended source"),
+        ("rxj1713_point.1.png", None),
+        ("rxj1713_extended.1.png", None),
     ]),
     ("Exercise 3 — Atmospheric neutrinos: REAL vs WEIGHTED", [
         ("honda_comparison_4plots.png", None),
