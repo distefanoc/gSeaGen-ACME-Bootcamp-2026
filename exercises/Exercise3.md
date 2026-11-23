@@ -35,7 +35,7 @@ $$
 \Phi(E)=10^{-5}E^{-2}
 $$
 
-where energy is in GeV and the flux is in GeV⁻¹ m⁻² s⁻¹ sr⁻¹, separately for each neutrino species.
+where energy is in GeV and the flux is in GeV⁻¹ m⁻² s⁻¹ sr⁻¹. The same flux is used for both muon neutrinos and antineutrinos.
 
 The generated ROOT file is:
 
@@ -59,7 +59,13 @@ w_{\mathrm{target}}=
 \Phi_{\mathrm{target}}(E,\theta,\mathrm{PDG}).
 $$
 
-We will use the Wang–Yasuda parametrization to calculate atmospheric neutrino weights.
+We will use the Wang–Yasuda parametrization of the conventional atmospheric muon neutrino flux, which includes contributions from pion and kaon decays.
+
+The atmospheric flux is calculated by the function `atmospheric_numu_flux()` implemented in [`atmospheric_flux.py`](../scripts/atmospheric_flux.py). This function is called by `plot_atmo_cosmic_reweight.py` to calculate the new event weights.
+
+The parametrization describes the atmospheric flux at the Earth's surface and does not include neutrino absorption in the Earth, oscillations, or the prompt component.
+
+**Reference:** Y. Wang and O. Yasuda, *Search for sterile neutrinos by shower events at a future neutrino telescope*, Progress of Theoretical and Experimental Physics **2022**, 023B04 (2022), Section 4.1.1, Eq. (54). [DOI: 10.1093/ptep/ptac010](https://doi.org/10.1093/ptep/ptac010).
 
 ## 3. Compare the two flux hypotheses
 
@@ -86,4 +92,6 @@ The plot shows the total contribution and the separate contributions from muon n
 
 ## Note
 
-The flux models used here are intended to illustrate the event reweighting procedure. A realistic physics analysis would require more accurate flux models.
+The Wang–Yasuda parametrization is an approximation and is not intended for precision predictions, particularly at high energies.
+
+**Further exercise:** Try replacing it with a more accurate atmospheric neutrino flux model and compare the resulting energy distributions and event rates.
